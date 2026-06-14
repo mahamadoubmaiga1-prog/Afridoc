@@ -101,13 +101,17 @@ Vérifiez le statut du déploiement dans le dashboard Neon.
 
 ### 3.4 Variables d'environnement Vercel
 
-Avant de déployer, configurez les variables:
+Avant de déployer, ne commitez PAS le fichier `.env` (il est déjà dans `.gitignore`).
+
+Configurez plutôt les variables directement dans Vercel:
 
 1. Cliquez sur "Environment Variables"
 2. Ajoutez:
    - `NODE_ENV`: `production`
    - `BACKEND_URL`: `https://your-neon-backend-url.com`
    - `FRONTEND_URL`: `https://your-vercel-app.vercel.app`
+
+⚠️ **Sécurité**: Ne commitez jamais le fichier `.env` contenant des clés secrètes. Utilisez toujours les tableaux de bord des plateformes (Vercel, Neon) pour gérer les variables sensibles.
 
 ### 3.5 Déploiement
 
@@ -127,20 +131,18 @@ Visitez `https://your-vercel-app.vercel.app` dans votre navigateur
 
 ### 4.2 Configurer les URLs en production
 
-Après obtention des URLs finales:
+Après obtention des URLs finales, configurez les variables dans les tableaux de bord:
 
-1. Mettez à jour `.env`:
-```
-BACKEND_URL=https://your-neon-backend-url
-FRONTEND_URL=https://your-vercel-app.vercel.app
-```
+**Vercel**:
+1. Allez à Settings → Environment Variables
+2. Ajoutez `BACKEND_URL` (format: https://your-project.neon.tech)
+3. Ajoutez `FRONTEND_URL` (votre URL Vercel)
 
-2. Commitez et poussez:
-```bash
-git add .env
-git commit -m "Update production URLs"
-git push origin main
-```
+**Neon**:
+1. Allez à Settings → Environment Variables
+2. Ajoutez les variables de production
+
+⚠️ **N'ajoutez PAS le fichier `.env` au repository** - il contient des secrets et doit rester local.
 
 ## Fichiers de configuration
 

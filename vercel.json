@@ -7,12 +7,5 @@
     "NODE_ENV": "production",
     "PORT": "3000"
   },
-  "envPrefix": "AFRIDOC_",
-  "public": true,
-  "functions": {
-    "api/**/*.js": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
-  }
+  "public": false
 }
