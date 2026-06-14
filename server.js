@@ -73,6 +73,13 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/documents', (req, res, next) => {
   if (req.method === 'POST' && req.path.endsWith('/generate')) {
@@ -91,6 +98,10 @@ app.get('/about', (req, res) => {
 
 app.get('/api/stats', (req, res) => {
   res.json({ total: global.docStats.total });
+});
+
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', uptime: Math.floor(process.uptime()), timestamp: new Date().toISOString() });
 });
 
 app.use('/documents', documentRoutes);

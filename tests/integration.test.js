@@ -145,6 +145,17 @@ describe('Afridoc Integration Tests', function () {
     });
   });
 
+  it('GET /api/health returns ok', function (done) {
+    request({ hostname: 'localhost', port, path: '/api/health', method: 'GET' }, null, function (err, res, body) {
+      assert.ifError(err);
+      assert.strictEqual(res.statusCode, 200);
+      const json = JSON.parse(body.toString());
+      assert.strictEqual(json.status, 'ok');
+      assert.ok(typeof json.uptime === 'number');
+      done();
+    });
+  });
+
   it('GET /this-page-does-not-exist returns 404', function (done) {
     request({ hostname: 'localhost', port, path: '/this-page-does-not-exist', method: 'GET' }, null, function (err, res) {
       assert.ifError(err);
