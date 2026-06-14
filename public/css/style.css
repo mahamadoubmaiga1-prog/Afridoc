@@ -1023,21 +1023,38 @@ legend {
   }
 }
 
-@media (max-width: 750px) {
-  .navbar-right {
-    gap: 10px;
-  }
-
-  .lang-selector select {
-    padding: 8px 10px;
-  }
-
-  .stats-bar-inner {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .preview-actions .btn {
-    width: 100%;
-  }
+/* ─── Document search ────────────────────────────────── */
+.doc-search-wrap {
+  margin-bottom: 32px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.doc-search {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid var(--gray-300);
+  border-radius: 999px;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  color: var(--gray-900);
+  background: var(--white);
+  transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.doc-search:focus {
+  outline: none;
+  border-color: var(--green-light);
+  box-shadow: 0 0 0 4px rgba(46,125,50,.1);
+}
+
+.doc-no-results {
+  text-align: center;
+  color: var(--gray-600);
+  font-size: 1rem;
+  padding: 40px 0;
+}
+
+.doc-card[hidden] { display: none; }

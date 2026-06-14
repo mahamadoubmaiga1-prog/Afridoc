@@ -133,3 +133,26 @@ window.changeLang = function changeLang(lang) {
   `;
   document.head.appendChild(style);
 })();
+
+(function () {
+  const searchInput = document.getElementById('docSearch');
+  const grid = document.getElementById('docGrid');
+  const noResults = document.getElementById('docNoResults');
+  if (!searchInput || !grid) return;
+
+  const cards = Array.from(grid.querySelectorAll('.doc-card'));
+
+  searchInput.addEventListener('input', function () {
+    const query = this.value.toLowerCase().trim();
+    let visible = 0;
+
+    cards.forEach(function (card) {
+      const text = (card.dataset.search || '') + ' ' + (card.textContent || '');
+      const match = !query || text.toLowerCase().includes(query);
+      card.hidden = !match;
+      if (match) visible++;
+    });
+
+    if (noResults) noResults.hidden = visible > 0;
+  });
+})();

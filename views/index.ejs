@@ -15,7 +15,7 @@
   <section class="stats-bar">
     <div class="container stats-bar-inner">
       <strong><%= stats.total %></strong>
-      <span>documents générés par nos utilisateurs</span>
+      <span><%= (t && t.statsGenerated) || 'documents générés par nos utilisateurs' %></span>
     </div>
   </section>
 
@@ -42,24 +42,28 @@
 
   <section id="documents" class="documents container">
     <h2 class="section-title"><%= (t && t.documentsTitle) || 'Choisissez votre document' %></h2>
-    <div class="doc-grid">
-      <a href="/documents/cv" class="doc-card"><div class="doc-icon">👤</div><h3>CV</h3><p>Curriculum Vitae professionnel</p></a>
-      <a href="/documents/lettre-motivation" class="doc-card"><div class="doc-icon">✉️</div><h3>Lettre de motivation</h3><p>Pour accompagner votre candidature</p></a>
-      <a href="/documents/demande-emploi" class="doc-card"><div class="doc-icon">💼</div><h3>Demande d'emploi</h3><p>Lettre de demande d'emploi</p></a>
-      <a href="/documents/demande-stage" class="doc-card"><div class="doc-icon">🎓</div><h3>Demande de stage</h3><p>Demande de stage académique</p></a>
-      <a href="/documents/attestation-travail" class="doc-card"><div class="doc-icon">📜</div><h3>Attestation de travail</h3><p>Attestation délivrée par l'employeur</p></a>
-      <a href="/documents/declaration-honneur" class="doc-card"><div class="doc-icon">🤝</div><h3>Déclaration sur l'honneur</h3><p>Déclaration officielle sur l'honneur</p></a>
-      <a href="/documents/lettre-administrative" class="doc-card"><div class="doc-icon">🏛️</div><h3>Lettre administrative</h3><p>Correspondance avec les administrations</p></a>
-      <a href="/documents/demande-acte-naissance" class="doc-card"><div class="doc-icon">🪪</div><h3>Demande d'acte de naissance</h3><p>Demande auprès de l'état civil</p></a>
-      <a href="/documents/contrat-travail" class="doc-card"><div class="doc-icon">🧾</div><h3>Contrat de travail</h3><p>Contrat professionnel employeur-salarié</p></a>
-      <a href="/documents/recu-paiement" class="doc-card"><div class="doc-icon">💳</div><h3>Reçu de paiement</h3><p>Justificatif de règlement</p></a>
-      <a href="/documents/procuration" class="doc-card"><div class="doc-icon">🖊️</div><h3>Procuration</h3><p>Mandat de représentation</p></a>
-      <a href="/documents/demande-conge" class="doc-card"><div class="doc-icon">🌴</div><h3>Demande de congé</h3><p>Demande officielle d'absence</p></a>
-      <a href="/documents/certificat-residence" class="doc-card"><div class="doc-icon">🏠</div><h3>Certificat de résidence</h3><p>Attestation de domicile</p></a>
-      <a href="/documents/lettre-recommandation" class="doc-card"><div class="doc-icon">🌟</div><h3>Lettre de recommandation</h3><p>Appui professionnel et académique</p></a>
-      <a href="/documents/mise-en-demeure" class="doc-card"><div class="doc-icon">⚖️</div><h3>Mise en demeure</h3><p>Notification formelle avant recours</p></a>
-      <a href="/documents/attestation-scolarite" class="doc-card"><div class="doc-icon">🏫</div><h3>Attestation de scolarité</h3><p>Justificatif de fréquentation scolaire</p></a>
+    <div class="doc-search-wrap">
+      <input type="search" id="docSearch" class="doc-search" placeholder="<%= (t && t.documentsSearch) || 'Rechercher un document…' %>" aria-label="<%= (t && t.documentsSearch) || 'Rechercher un document…' %>">
     </div>
+    <div class="doc-grid" id="docGrid">
+      <a href="/documents/cv" class="doc-card" data-search="cv curriculum vitae professionnel"><div class="doc-icon">👤</div><h3>CV</h3><p>Curriculum Vitae professionnel</p></a>
+      <a href="/documents/lettre-motivation" class="doc-card" data-search="lettre motivation candidature"><div class="doc-icon">✉️</div><h3>Lettre de motivation</h3><p>Pour accompagner votre candidature</p></a>
+      <a href="/documents/demande-emploi" class="doc-card" data-search="demande emploi lettre poste"><div class="doc-icon">💼</div><h3>Demande d'emploi</h3><p>Lettre de demande d'emploi</p></a>
+      <a href="/documents/demande-stage" class="doc-card" data-search="demande stage academique etudiant"><div class="doc-icon">🎓</div><h3>Demande de stage</h3><p>Demande de stage académique</p></a>
+      <a href="/documents/attestation-travail" class="doc-card" data-search="attestation travail employeur certificat"><div class="doc-icon">📜</div><h3>Attestation de travail</h3><p>Attestation délivrée par l'employeur</p></a>
+      <a href="/documents/declaration-honneur" class="doc-card" data-search="declaration honneur officielle serment"><div class="doc-icon">🤝</div><h3>Déclaration sur l'honneur</h3><p>Déclaration officielle sur l'honneur</p></a>
+      <a href="/documents/lettre-administrative" class="doc-card" data-search="lettre administrative administration correspondance"><div class="doc-icon">🏛️</div><h3>Lettre administrative</h3><p>Correspondance avec les administrations</p></a>
+      <a href="/documents/demande-acte-naissance" class="doc-card" data-search="demande acte naissance etat civil"><div class="doc-icon">🪪</div><h3>Demande d'acte de naissance</h3><p>Demande auprès de l'état civil</p></a>
+      <a href="/documents/contrat-travail" class="doc-card" data-search="contrat travail emploi salarie employeur"><div class="doc-icon">🧾</div><h3>Contrat de travail</h3><p>Contrat professionnel employeur-salarié</p></a>
+      <a href="/documents/recu-paiement" class="doc-card" data-search="recu paiement justificatif reglement facture"><div class="doc-icon">💳</div><h3>Reçu de paiement</h3><p>Justificatif de règlement</p></a>
+      <a href="/documents/procuration" class="doc-card" data-search="procuration mandat representation deleguer"><div class="doc-icon">🖊️</div><h3>Procuration</h3><p>Mandat de représentation</p></a>
+      <a href="/documents/demande-conge" class="doc-card" data-search="demande conge absence vacances rrh"><div class="doc-icon">🌴</div><h3>Demande de congé</h3><p>Demande officielle d'absence</p></a>
+      <a href="/documents/certificat-residence" class="doc-card" data-search="certificat residence domicile adresse attestation"><div class="doc-icon">🏠</div><h3>Certificat de résidence</h3><p>Attestation de domicile</p></a>
+      <a href="/documents/lettre-recommandation" class="doc-card" data-search="lettre recommandation appui professionnel academique reference"><div class="doc-icon">🌟</div><h3>Lettre de recommandation</h3><p>Appui professionnel et académique</p></a>
+      <a href="/documents/mise-en-demeure" class="doc-card" data-search="mise en demeure notification formelle recours juridique"><div class="doc-icon">⚖️</div><h3>Mise en demeure</h3><p>Notification formelle avant recours</p></a>
+      <a href="/documents/attestation-scolarite" class="doc-card" data-search="attestation scolarite scolaire ecole eleve inscription"><div class="doc-icon">🏫</div><h3>Attestation de scolarité</h3><p>Justificatif de fréquentation scolaire</p></a>
+    </div>
+    <p class="doc-no-results" id="docNoResults" hidden>Aucun document trouvé.</p>
   </section>
 
   <section class="features container">

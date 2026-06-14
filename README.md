@@ -6,23 +6,25 @@ Application web de génération de documents administratifs au Mali et en Afriqu
 
 **Afridoc** permet à tout citoyen de générer facilement ses documents administratifs directement depuis son téléphone, tablette ou ordinateur — sans avoir besoin d'aller dans un cybercafé.
 
-## Documents disponibles
+## Documents disponibles (16 types)
 
-- 📋 Curriculum Vitae (CV)
-- ✉️ Lettre de motivation
-- 💼 Demande d'emploi
-- 🎓 Demande de stage
-- 📜 Attestation de travail
-- 🤝 Déclaration sur l'honneur
-- 🏛️ Lettre administrative
-- 🪪 Demande d'acte de naissance
+| Catégorie | Documents |
+|---|---|
+| **Emploi** | 📋 Curriculum Vitae (CV), ✉️ Lettre de motivation, 💼 Demande d'emploi, 📜 Attestation de travail, 🌴 Demande de congé, 🧾 Contrat de travail |
+| **Stage & Scolarité** | 🎓 Demande de stage, 🏫 Attestation de scolarité |
+| **Administratif** | 🤝 Déclaration sur l'honneur, 🏛️ Lettre administrative, 🪪 Demande d'acte de naissance, 🏠 Certificat de résidence |
+| **Juridique & Financier** | 🖊️ Procuration, ⚖️ Mise en demeure, 💳 Reçu de paiement |
+| **Recommandation** | 🌟 Lettre de recommandation |
 
 ## Technologies
 
-- **Backend** : Node.js + Express
+- **Backend** : Node.js 18+ + Express 4
 - **Templates** : EJS
-- **PDF** : PDFKit
-- **Frontend** : HTML/CSS/JS (responsive, mobile-first)
+- **PDF** : PDFKit (3 thèmes : Classique, Moderne, Minimaliste)
+- **QR Code** : qrcode
+- **Frontend** : HTML/CSS/JS (responsive, mobile-first, PWA)
+- **Internationalisation** : Français 🇫🇷, Anglais 🇬🇧, Bambara 🎯
+- **Sécurité** : Rate limiting (15 générations / 15 min)
 
 ## Installation
 
@@ -33,17 +35,40 @@ npm install
 ## Démarrage
 
 ```bash
+# Mode production
 npm start
+
+# Mode développement
+npm run dev
 ```
 
 L'application sera accessible à l'adresse : `http://localhost:3000`
 
+## Tests
+
+```bash
+npm test
+```
+
+24 tests d'intégration couvrent l'ensemble des 16 types de documents.
+
 ## Utilisation
 
 1. Ouvrez l'application dans votre navigateur
-2. Choisissez le type de document souhaité
-3. Remplissez le formulaire
-4. Téléchargez votre document en PDF
+2. Recherchez ou choisissez le type de document souhaité
+3. Remplissez le formulaire guidé
+4. Prévisualisez votre document avant génération (optionnel)
+5. Téléchargez votre document en PDF
+
+## API
+
+| Endpoint | Méthode | Description |
+|---|---|---|
+| `/api/stats` | GET | Nombre total de documents générés |
+| `/api/health` | GET | Statut de santé du serveur |
+| `/documents/:type` | GET | Formulaire de saisie |
+| `/documents/:type/preview` | POST | Aperçu HTML |
+| `/documents/:type/generate` | POST | Génération PDF |
 
 ## Confidentialité
 
@@ -51,67 +76,42 @@ Aucune donnée personnelle n'est stockée sur le serveur. Les documents sont gé
 
 ## Déploiement
 
-### Architecture
+### Prérequis
 
-L'application est structurée pour déploiement distribué :
-- **Backend** : Node.js/Express sur Neon
-- **Frontend** : Static files sur Vercel
-
-### Configuration d'environnement
-
-Avant de déployer, créez un fichier `.env` basé sur `.env.example` :
+- Node.js 18+ (voir `.nvmrc`)
+- Variables d'environnement : copier `.env.example` en `.env`
 
 ```bash
 cp .env.example .env
 ```
 
-Configurez les variables suivantes :
-- `DATABASE_URL` : URL de connexion Neon PostgreSQL (si utilisée)
-- `BACKEND_URL` : URL du backend en production
-- `FRONTEND_URL` : URL du frontend en production
+### Déploiement sur Render / Railway (recommandé)
 
-### Déploiement du Backend sur Neon
+1. Connectez votre repository GitHub à [Render](https://render.com) ou [Railway](https://railway.app)
+2. Configurez la commande de démarrage : `npm start`
+3. Ajoutez la variable `NODE_ENV=production`
+4. Le service se déploie automatiquement à chaque push sur `main`
 
-1. Créez un compte sur [Neon.tech](https://neon.tech)
-2. Créez une base de données PostgreSQL
-3. Connectez votre repository GitHub à Neon
-4. Configurez le fichier `.env` avec votre `DATABASE_URL`
-5. Pushez vers la branche principale pour déclencher le déploiement automatique
+### Déploiement sur Vercel
 
 ```bash
-git push origin main
-```
-
-### Déploiement du Frontend sur Vercel
-
-1. Créez un compte sur [Vercel.com](https://vercel.com)
-2. Importez ce repository GitHub
-3. Configurez les variables d'environnement dans les paramètres Vercel
-4. Vercel déploiera automatiquement à chaque push sur la branche principale
-
-```bash
-# Ou déploiement manuel
+# Déploiement manuel
 npm run deploy:frontend
 ```
 
-### Variables d'environnement pour production
+### Variables d'environnement
 
-Sur Vercel et Neon, configurez :
-
-```
+```env
 NODE_ENV=production
 PORT=3000
-BACKEND_URL=https://votre-backend-neon-url
-FRONTEND_URL=https://votre-app-vercel.vercel.app
 ```
 
 ### Vérification du déploiement
 
 ```bash
-# Tester localement
-npm start
+# Santé du serveur
+curl https://votre-app.com/api/health
 
-# Construire et tester
-npm run build
-npm test
+# Statistiques
+curl https://votre-app.com/api/stats
 ```
