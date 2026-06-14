@@ -7,7 +7,9 @@
     <p>Rédigez une lettre administrative formelle en PDF.</p>
   </div>
 
-  <form action="/documents/lettre-administrative/generate" method="POST" class="doc-form">
+  <form action="/documents/lettre-administrative/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
 
     <fieldset>
       <legend>Vos coordonnées</legend>
@@ -68,12 +70,7 @@
           placeholder="Rédigez ici le contenu de votre lettre administrative..."></textarea>
       </div>
     </fieldset>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary btn-lg">
-        📥 Générer la lettre en PDF
-      </button>
-    </div>
+    <%- include('partials/form-actions', { docType: 'lettre-administrative', submitLabel: "📥 Générer ma lettre en PDF" }) %>
   </form>
 </main>
 

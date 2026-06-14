@@ -7,7 +7,9 @@
     <p>Rédigez votre demande d'emploi formelle en PDF.</p>
   </div>
 
-  <form action="/documents/demande-emploi/generate" method="POST" class="doc-form">
+  <form action="/documents/demande-emploi/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
 
     <fieldset>
       <legend>Vos coordonnées</legend>
@@ -79,12 +81,7 @@
           placeholder="Expliquez pourquoi vous postulez à ce poste..."></textarea>
       </div>
     </fieldset>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary btn-lg">
-        📥 Générer ma demande en PDF
-      </button>
-    </div>
+    <%- include('partials/form-actions', { docType: 'demande-emploi', submitLabel: "📥 Générer ma demande en PDF" }) %>
   </form>
 </main>
 

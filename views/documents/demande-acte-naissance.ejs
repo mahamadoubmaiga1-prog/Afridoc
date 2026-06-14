@@ -7,7 +7,9 @@
     <p>Générez votre demande d'acte de naissance auprès de l'état civil en PDF.</p>
   </div>
 
-  <form action="/documents/demande-acte-naissance/generate" method="POST" class="doc-form">
+  <form action="/documents/demande-acte-naissance/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
 
     <fieldset>
       <legend>Vos coordonnées</legend>
@@ -101,12 +103,7 @@
         </div>
       </div>
     </fieldset>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary btn-lg">
-        📥 Générer la demande en PDF
-      </button>
-    </div>
+    <%- include('partials/form-actions', { docType: 'demande-acte-naissance', submitLabel: "📥 Générer ma demande en PDF" }) %>
   </form>
 </main>
 

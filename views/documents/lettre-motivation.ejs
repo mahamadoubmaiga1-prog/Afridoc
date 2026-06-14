@@ -7,7 +7,9 @@
     <p>Rédigez votre lettre de motivation professionnelle en PDF.</p>
   </div>
 
-  <form action="/documents/lettre-motivation/generate" method="POST" class="doc-form">
+  <form action="/documents/lettre-motivation/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
 
     <fieldset>
       <legend>Vos coordonnées</legend>
@@ -71,12 +73,7 @@
           placeholder="Rédigez ici le corps de votre lettre de motivation. Expliquez vos motivations, vos compétences et ce que vous apportez à l'entreprise..."></textarea>
       </div>
     </fieldset>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary btn-lg">
-        📥 Générer ma lettre en PDF
-      </button>
-    </div>
+    <%- include('partials/form-actions', { docType: 'lettre-motivation', submitLabel: "📥 Générer ma lettre en PDF" }) %>
   </form>
 </main>
 

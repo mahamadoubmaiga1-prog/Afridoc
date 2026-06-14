@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/documents/<%= docType %>" class="back-link">← Modifier le formulaire</a>
+    <h1>Aperçu : <%= docTitle %></h1>
+    <p>Vérifiez votre document avant de télécharger le PDF.</p>
+  </div>
+  <div class="preview-layout">
+    <div class="preview-document theme-<%= theme %>">
+      <div class="preview-header">
+        <h2>AFRIDOC</h2>
+        <p>Génération Professionnelle de Documents Administratifs</p>
+        <h3><%= docTitle %></h3>
+      </div>
+      <div class="preview-body">
+        <%- previewHtml %>
+      </div>
+      <div class="preview-footer">
+        <p>Généré par Afridoc — Document Administratif Professionnel</p>
+      </div>
+    </div>
+    <% if (qrCodeDataUrl) { %>
+      <aside class="qr-preview-card">
+        <h3>QR Code</h3>
+        <p>Scannez pour rouvrir rapidement ce formulaire.</p>
+        <img src="<%= qrCodeDataUrl %>" alt="QR Code Afridoc" class="qr-code-image">
+      </aside>
+    <% } %>
+  </div>
+  <form method="POST" action="/documents/<%= docType %>/generate" class="preview-actions">
+    <% Object.entries(data).forEach(([k, v]) => { %>
+      <input type="hidden" name="<%= k %>" value="<%= v %>">
+    <% }) %>
+    <input type="hidden" name="theme" value="<%= theme %>">
+    <a href="/documents/<%= docType %>" class="btn btn-secondary">✏️ Modifier</a>
+    <button type="submit" class="btn btn-primary btn-lg">📥 Télécharger le PDF</button>
+  </form>
+</main>
+<%- include('../partials/footer') %>

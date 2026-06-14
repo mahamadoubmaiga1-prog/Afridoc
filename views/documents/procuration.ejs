@@ -1,0 +1,94 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>🖊️ Procuration</h1>
+    <p>Rédigez une procuration claire pour désigner un mandataire.</p>
+  </div>
+
+  <form action="/documents/procuration/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
+
+    <fieldset>
+      <legend>Mandant</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="prenomMandant">Prénom du mandant *</label>
+        <input type="text" id="prenomMandant" name="prenomMandant" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Mariam">
+      </div>
+      <div class="form-group">
+        <label for="nomMandant">Nom du mandant *</label>
+        <input type="text" id="nomMandant" name="nomMandant" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Sidibé">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="dateNaissanceMandant">Date de naissance *</label>
+        <input type="text" id="dateNaissanceMandant" name="dateNaissanceMandant" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 4 février 1985">
+      </div>
+      <div class="form-group">
+        <label for="lieuNaissanceMandant">Lieu de naissance *</label>
+        <input type="text" id="lieuNaissanceMandant" name="lieuNaissanceMandant" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Kayes">
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="adresseMandant">Adresse *</label>
+        <input type="text" id="adresseMandant" name="adresseMandant" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako, Sotuba">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Mandataire</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="prenomMandataire">Prénom du mandataire *</label>
+        <input type="text" id="prenomMandataire" name="prenomMandataire" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Boubacar">
+      </div>
+      <div class="form-group">
+        <label for="nomMandataire">Nom du mandataire *</label>
+        <input type="text" id="nomMandataire" name="nomMandataire" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Diarra">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="dateNaissanceMandataire">Date de naissance *</label>
+        <input type="text" id="dateNaissanceMandataire" name="dateNaissanceMandataire" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 18 août 1990">
+      </div>
+      <div class="form-group">
+        <label for="adresseMandataire">Adresse *</label>
+        <input type="text" id="adresseMandataire" name="adresseMandataire" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Koulikoro, Centre">
+      </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Mandat</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="objet">Objet de la procuration *</label>
+        <textarea id="objet" name="objet" rows="5" maxlength="2000" required data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Retrait de mon dossier administratif auprès de la mairie"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="dureeValidite">Durée de validité *</label>
+        <input type="text" id="dureeValidite" name="dureeValidite" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 30 jours">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="ville">Ville *</label>
+        <input type="text" id="ville" name="ville" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako">
+      </div>
+      <div class="form-group">
+        <label for="date">Date *</label>
+        <input type="text" id="date" name="date" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 14 juin 2024">
+      </div>
+      </div>
+    </fieldset>
+
+    <%- include('partials/form-actions', { docType: 'procuration', submitLabel: "📥 Générer la procuration en PDF" }) %>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<%= lang || 'fr' %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1B5E20">
   <title>Afridoc — Documents Administratifs</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <nav class="navbar">
@@ -12,8 +14,17 @@
       <span class="brand-icon">📄</span> Afridoc
     </a>
     <ul class="navbar-nav">
-      <li><a href="/">Accueil</a></li>
-      <li><a href="/about">À propos</a></li>
+      <li><a href="/"><%= (t && t.navHome) || 'Accueil' %></a></li>
+      <li><a href="/about"><%= (t && t.navAbout) || 'À propos' %></a></li>
     </ul>
-    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="navbar-right">
+      <div class="lang-selector">
+        <select id="langSelect" aria-label="Sélectionner la langue / Select language" onchange="changeLang(this.value)">
+          <option value="fr" <%= lang === 'fr' ? 'selected' : '' %>>🇫🇷 FR</option>
+          <option value="en" <%= lang === 'en' ? 'selected' : '' %>>🇬🇧 EN</option>
+          <option value="bm" <%= lang === 'bm' ? 'selected' : '' %>>🎯 BM</option>
+        </select>
+      </div>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+    </div>
   </nav>

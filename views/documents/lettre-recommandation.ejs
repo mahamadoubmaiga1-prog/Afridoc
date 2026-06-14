@@ -1,0 +1,104 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>🌟 Lettre de recommandation</h1>
+    <p>Mettez en valeur un candidat avec une recommandation structurée.</p>
+  </div>
+
+  <form action="/documents/lettre-recommandation/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
+
+    <fieldset>
+      <legend>Rédacteur</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="prenomRedacteur">Prénom du rédacteur *</label>
+        <input type="text" id="prenomRedacteur" name="prenomRedacteur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Ibrahim">
+      </div>
+      <div class="form-group">
+        <label for="nomRedacteur">Nom du rédacteur *</label>
+        <input type="text" id="nomRedacteur" name="nomRedacteur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Touré">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="titreRedacteur">Titre / fonction *</label>
+        <input type="text" id="titreRedacteur" name="titreRedacteur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Directeur des opérations">
+      </div>
+      <div class="form-group">
+        <label for="entrepriseRedacteur">Entreprise *</label>
+        <input type="text" id="entrepriseRedacteur" name="entrepriseRedacteur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Mali Tech">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="emailRedacteur">Email *</label>
+        <input type="email" id="emailRedacteur" name="emailRedacteur" required maxlength="120" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : ibrahim@malitech.com">
+      </div>
+      <div class="form-group">
+        <label for="telRedacteur">Téléphone</label>
+        <input type="tel" id="telRedacteur" name="telRedacteur" maxlength="30" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : +223 76 00 00 00">
+      </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Candidat</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="prenomCandidat">Prénom du candidat *</label>
+        <input type="text" id="prenomCandidat" name="prenomCandidat" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Awa">
+      </div>
+      <div class="form-group">
+        <label for="nomCandidat">Nom du candidat *</label>
+        <input type="text" id="nomCandidat" name="nomCandidat" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Cissé">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="posteCandidat">Poste / formation visé(e) *</label>
+        <input type="text" id="posteCandidat" name="posteCandidat" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Responsable communication">
+      </div>
+      <div class="form-group">
+        <label for="dureeCollaboration">Durée de collaboration *</label>
+        <input type="text" id="dureeCollaboration" name="dureeCollaboration" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 2 ans">
+      </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Recommandation</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="qualites">Qualités du candidat *</label>
+        <textarea id="qualites" name="qualites" rows="5" maxlength="2000" required data-help="Ce champ sera affiché dans le document final." placeholder="Décrivez les qualités humaines et professionnelles."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="realisations">Réalisations marquantes *</label>
+        <textarea id="realisations" name="realisations" rows="5" maxlength="2000" required data-help="Ce champ sera affiché dans le document final." placeholder="Mentionnez les réalisations concrètes du candidat."></textarea>
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="conclusion">Conclusion *</label>
+        <textarea id="conclusion" name="conclusion" rows="5" maxlength="2000" required data-help="Ce champ sera affiché dans le document final." placeholder="Ajoutez votre conclusion et votre recommandation."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="ville">Ville *</label>
+        <input type="text" id="ville" name="ville" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako">
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="date">Date *</label>
+        <input type="text" id="date" name="date" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 14 juin 2024">
+      </div>
+    </fieldset>
+
+    <%- include('partials/form-actions', { docType: 'lettre-recommandation', submitLabel: "📥 Générer la lettre en PDF" }) %>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

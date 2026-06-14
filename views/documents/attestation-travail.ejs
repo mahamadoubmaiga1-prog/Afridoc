@@ -7,7 +7,9 @@
     <p>Générez une attestation de travail officielle en PDF.</p>
   </div>
 
-  <form action="/documents/attestation-travail/generate" method="POST" class="doc-form">
+  <form action="/documents/attestation-travail/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
 
     <fieldset>
       <legend>Informations de l'employeur</legend>
@@ -72,12 +74,7 @@
         </div>
       </div>
     </fieldset>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary btn-lg">
-        📥 Générer l'attestation en PDF
-      </button>
-    </div>
+    <%- include('partials/form-actions', { docType: 'attestation-travail', submitLabel: "📥 Générer l'attestation en PDF" }) %>
   </form>
 </main>
 
