@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "test": "node -e \"require('./server.js')\" && echo 'Server loads OK'"
+    "build": "echo 'Preparing for deployment...' && npm install",
+    "test": "node -e \"require('./server.js')\" && echo 'Server loads OK'",
+    "deploy:backend": "echo 'Deploy backend to Neon - push to main branch'",
+    "deploy:frontend": "echo 'Deploy frontend to Vercel - vercel --prod'"
   },
   "repository": {
     "type": "git",
