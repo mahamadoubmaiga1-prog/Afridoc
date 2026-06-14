@@ -2,37 +2,67 @@
 
 <main>
   <section class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title"><%= (t && t.heroTitle) || 'Bienvenue sur' %> <span class="highlight">Afridoc</span></h1>
-      <p class="hero-sub"><%= (t && t.heroSubtitle) || 'Générez vos documents administratifs en quelques clics, sans vous déplacer au cybercafé.' %></p>
-      <a href="#documents" class="btn btn-primary"><%= (t && t.startNow) || 'Commencer maintenant' %></a>
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-shape hero-shape--1"></div>
+      <div class="hero-shape hero-shape--2"></div>
+      <div class="hero-shape hero-shape--3"></div>
     </div>
-    <div class="hero-graphic" aria-hidden="true">
-      <div class="hero-icon">📋</div>
+    <div class="hero-content" data-animate>
+      <div class="hero-badge">🌍 <%= (t && t.heroBadge) || 'Service 100% Gratuit · Sans inscription' %></div>
+      <h1 class="hero-title"><%= (t && t.heroTitle) || 'Vos documents officiels,' %> <span class="highlight"><%= (t && t.heroTitleHighlight) || 'en quelques clics' %></span></h1>
+      <p class="hero-sub"><%= (t && t.heroSubtitle) || 'Générez des documents administratifs professionnels depuis n\'importe où. Rapide, gratuit et sécurisé.' %></p>
+      <div class="hero-actions">
+        <a href="#documents" class="btn btn-primary btn-lg"><%= (t && t.startNow) || 'Commencer maintenant' %> →</a>
+        <a href="/about" class="btn btn-outline-hero"><%= (t && t.learnMore) || 'En savoir plus' %></a>
+      </div>
+      <div class="hero-trust">
+        <span>✓ <%= (t && t.trustNoAccount) || 'Aucun compte requis' %></span>
+        <span>✓ <%= (t && t.trustFreePDF) || 'PDF gratuit' %></span>
+        <span>✓ <%= (t && t.trustNoStorage) || 'Données non stockées' %></span>
+      </div>
+    </div>
+    <div class="hero-graphic" aria-hidden="true" data-animate="fade-right">
+      <div class="hero-doc-preview">
+        <div class="hero-doc-hdr">
+          <div class="hero-doc-lines">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="hero-doc-bdy">
+          <div class="hero-doc-line hero-doc-line--full"></div>
+          <div class="hero-doc-line hero-doc-line--full"></div>
+          <div class="hero-doc-line hero-doc-line--75"></div>
+          <div class="hero-doc-line hero-doc-line--full"></div>
+          <div class="hero-doc-line hero-doc-line--50"></div>
+          <div class="hero-doc-line hero-doc-line--full"></div>
+          <div class="hero-doc-line hero-doc-line--75"></div>
+        </div>
+        <div class="hero-doc-stamp">✓</div>
+      </div>
     </div>
   </section>
 
   <section class="stats-bar">
     <div class="container stats-bar-inner">
-      <strong><%= stats.total %></strong>
+      <strong data-counter="<%= stats.total %>"><%= stats.total %></strong>
       <span><%= (t && t.statsGenerated) || 'documents générés par nos utilisateurs' %></span>
     </div>
   </section>
 
   <section class="how-it-works container">
-    <h2 class="section-title"><%= (t && t.howItWorks) || 'Comment ça marche ?' %></h2>
+    <h2 class="section-title" data-animate><%= (t && t.howItWorks) || 'Comment ça marche ?' %></h2>
     <div class="steps">
-      <div class="step">
+      <div class="step" data-animate data-delay="1">
         <div class="step-num">1</div>
         <h3><%= (t && t.step1Title) || 'Choisissez' %></h3>
         <p><%= (t && t.step1Text) || 'Sélectionnez le type de document que vous souhaitez créer.' %></p>
       </div>
-      <div class="step">
+      <div class="step" data-animate data-delay="2">
         <div class="step-num">2</div>
         <h3><%= (t && t.step2Title) || 'Remplissez' %></h3>
         <p><%= (t && t.step2Text) || 'Saisissez vos informations dans le formulaire simple et guidé.' %></p>
       </div>
-      <div class="step">
+      <div class="step" data-animate data-delay="3">
         <div class="step-num">3</div>
         <h3><%= (t && t.step3Title) || 'Téléchargez' %></h3>
         <p><%= (t && t.step3Text) || 'Obtenez votre document en PDF prêt à imprimer ou à envoyer.' %></p>
@@ -41,38 +71,38 @@
   </section>
 
   <section id="documents" class="documents container">
-    <h2 class="section-title"><%= (t && t.documentsTitle) || 'Choisissez votre document' %></h2>
-    <div class="doc-search-wrap">
+    <h2 class="section-title" data-animate><%= (t && t.documentsTitle) || 'Choisissez votre document' %></h2>
+    <div class="doc-search-wrap" data-animate>
       <input type="search" id="docSearch" class="doc-search" placeholder="<%= (t && t.documentsSearch) || 'Rechercher un document…' %>" aria-label="<%= (t && t.documentsSearch) || 'Rechercher un document…' %>">
     </div>
     <div class="doc-grid" id="docGrid">
-      <a href="/documents/cv" class="doc-card" data-search="cv curriculum vitae professionnel"><div class="doc-icon">👤</div><h3>CV</h3><p>Curriculum Vitae professionnel</p></a>
-      <a href="/documents/lettre-motivation" class="doc-card" data-search="lettre motivation candidature"><div class="doc-icon">✉️</div><h3>Lettre de motivation</h3><p>Pour accompagner votre candidature</p></a>
-      <a href="/documents/demande-emploi" class="doc-card" data-search="demande emploi lettre poste"><div class="doc-icon">💼</div><h3>Demande d'emploi</h3><p>Lettre de demande d'emploi</p></a>
-      <a href="/documents/demande-stage" class="doc-card" data-search="demande stage academique etudiant"><div class="doc-icon">🎓</div><h3>Demande de stage</h3><p>Demande de stage académique</p></a>
-      <a href="/documents/attestation-travail" class="doc-card" data-search="attestation travail employeur certificat"><div class="doc-icon">📜</div><h3>Attestation de travail</h3><p>Attestation délivrée par l'employeur</p></a>
-      <a href="/documents/declaration-honneur" class="doc-card" data-search="declaration honneur officielle serment"><div class="doc-icon">🤝</div><h3>Déclaration sur l'honneur</h3><p>Déclaration officielle sur l'honneur</p></a>
-      <a href="/documents/lettre-administrative" class="doc-card" data-search="lettre administrative administration correspondance"><div class="doc-icon">🏛️</div><h3>Lettre administrative</h3><p>Correspondance avec les administrations</p></a>
-      <a href="/documents/demande-acte-naissance" class="doc-card" data-search="demande acte naissance etat civil"><div class="doc-icon">🪪</div><h3>Demande d'acte de naissance</h3><p>Demande auprès de l'état civil</p></a>
-      <a href="/documents/contrat-travail" class="doc-card" data-search="contrat travail emploi salarie employeur"><div class="doc-icon">🧾</div><h3>Contrat de travail</h3><p>Contrat professionnel employeur-salarié</p></a>
-      <a href="/documents/recu-paiement" class="doc-card" data-search="recu paiement justificatif reglement facture"><div class="doc-icon">💳</div><h3>Reçu de paiement</h3><p>Justificatif de règlement</p></a>
-      <a href="/documents/procuration" class="doc-card" data-search="procuration mandat representation deleguer"><div class="doc-icon">🖊️</div><h3>Procuration</h3><p>Mandat de représentation</p></a>
-      <a href="/documents/demande-conge" class="doc-card" data-search="demande conge absence vacances rrh"><div class="doc-icon">🌴</div><h3>Demande de congé</h3><p>Demande officielle d'absence</p></a>
-      <a href="/documents/certificat-residence" class="doc-card" data-search="certificat residence domicile adresse attestation"><div class="doc-icon">🏠</div><h3>Certificat de résidence</h3><p>Attestation de domicile</p></a>
-      <a href="/documents/lettre-recommandation" class="doc-card" data-search="lettre recommandation appui professionnel academique reference"><div class="doc-icon">🌟</div><h3>Lettre de recommandation</h3><p>Appui professionnel et académique</p></a>
-      <a href="/documents/mise-en-demeure" class="doc-card" data-search="mise en demeure notification formelle recours juridique"><div class="doc-icon">⚖️</div><h3>Mise en demeure</h3><p>Notification formelle avant recours</p></a>
-      <a href="/documents/attestation-scolarite" class="doc-card" data-search="attestation scolarite scolaire ecole eleve inscription"><div class="doc-icon">🏫</div><h3>Attestation de scolarité</h3><p>Justificatif de fréquentation scolaire</p></a>
+      <a href="/documents/cv" class="doc-card" data-search="cv curriculum vitae professionnel" data-animate data-delay="1"><div class="doc-icon">👤</div><h3>CV</h3><p>Curriculum Vitae professionnel</p></a>
+      <a href="/documents/lettre-motivation" class="doc-card" data-search="lettre motivation candidature" data-animate data-delay="2"><div class="doc-icon">✉️</div><h3>Lettre de motivation</h3><p>Pour accompagner votre candidature</p></a>
+      <a href="/documents/demande-emploi" class="doc-card" data-search="demande emploi lettre poste" data-animate data-delay="3"><div class="doc-icon">💼</div><h3>Demande d'emploi</h3><p>Lettre de demande d'emploi</p></a>
+      <a href="/documents/demande-stage" class="doc-card" data-search="demande stage academique etudiant" data-animate data-delay="4"><div class="doc-icon">🎓</div><h3>Demande de stage</h3><p>Demande de stage académique</p></a>
+      <a href="/documents/attestation-travail" class="doc-card" data-search="attestation travail employeur certificat" data-animate data-delay="1"><div class="doc-icon">📜</div><h3>Attestation de travail</h3><p>Attestation délivrée par l'employeur</p></a>
+      <a href="/documents/declaration-honneur" class="doc-card" data-search="declaration honneur officielle serment" data-animate data-delay="2"><div class="doc-icon">🤝</div><h3>Déclaration sur l'honneur</h3><p>Déclaration officielle sur l'honneur</p></a>
+      <a href="/documents/lettre-administrative" class="doc-card" data-search="lettre administrative administration correspondance" data-animate data-delay="3"><div class="doc-icon">🏛️</div><h3>Lettre administrative</h3><p>Correspondance avec les administrations</p></a>
+      <a href="/documents/demande-acte-naissance" class="doc-card" data-search="demande acte naissance etat civil" data-animate data-delay="4"><div class="doc-icon">🪪</div><h3>Demande d'acte de naissance</h3><p>Demande auprès de l'état civil</p></a>
+      <a href="/documents/contrat-travail" class="doc-card" data-search="contrat travail emploi salarie employeur" data-animate data-delay="1"><div class="doc-icon">🧾</div><h3>Contrat de travail</h3><p>Contrat professionnel employeur-salarié</p></a>
+      <a href="/documents/recu-paiement" class="doc-card" data-search="recu paiement justificatif reglement facture" data-animate data-delay="2"><div class="doc-icon">💳</div><h3>Reçu de paiement</h3><p>Justificatif de règlement</p></a>
+      <a href="/documents/procuration" class="doc-card" data-search="procuration mandat representation deleguer" data-animate data-delay="3"><div class="doc-icon">🖊️</div><h3>Procuration</h3><p>Mandat de représentation</p></a>
+      <a href="/documents/demande-conge" class="doc-card" data-search="demande conge absence vacances rrh" data-animate data-delay="4"><div class="doc-icon">🌴</div><h3>Demande de congé</h3><p>Demande officielle d'absence</p></a>
+      <a href="/documents/certificat-residence" class="doc-card" data-search="certificat residence domicile adresse attestation" data-animate data-delay="1"><div class="doc-icon">🏠</div><h3>Certificat de résidence</h3><p>Attestation de domicile</p></a>
+      <a href="/documents/lettre-recommandation" class="doc-card" data-search="lettre recommandation appui professionnel academique reference" data-animate data-delay="2"><div class="doc-icon">🌟</div><h3>Lettre de recommandation</h3><p>Appui professionnel et académique</p></a>
+      <a href="/documents/mise-en-demeure" class="doc-card" data-search="mise en demeure notification formelle recours juridique" data-animate data-delay="3"><div class="doc-icon">⚖️</div><h3>Mise en demeure</h3><p>Notification formelle avant recours</p></a>
+      <a href="/documents/attestation-scolarite" class="doc-card" data-search="attestation scolarite scolaire ecole eleve inscription" data-animate data-delay="4"><div class="doc-icon">🏫</div><h3>Attestation de scolarité</h3><p>Justificatif de fréquentation scolaire</p></a>
     </div>
     <p class="doc-no-results" id="docNoResults" hidden>Aucun document trouvé.</p>
   </section>
 
   <section class="features container">
-    <h2 class="section-title"><%= (t && t.whyChoose) || 'Pourquoi choisir Afridoc ?' %></h2>
+    <h2 class="section-title" data-animate><%= (t && t.whyChoose) || 'Pourquoi nous choisir ?' %></h2>
     <div class="features-grid">
-      <div class="feature"><span class="feature-icon">⚡</span><h3>Rapide</h3><p>Générez votre document en moins de 2 minutes.</p></div>
-      <div class="feature"><span class="feature-icon">🆓</span><h3>Gratuit</h3><p>Aucun frais, aucune inscription requise.</p></div>
-      <div class="feature"><span class="feature-icon">📲</span><h3>Accessible</h3><p>Depuis votre téléphone, tablette ou ordinateur.</p></div>
-      <div class="feature"><span class="feature-icon">🔒</span><h3>Sécurisé</h3><p>Vos données ne sont jamais stockées sur nos serveurs.</p></div>
+      <div class="feature" data-animate data-delay="1"><span class="feature-icon">⚡</span><h3>Rapide</h3><p>Générez votre document en moins de 2 minutes.</p></div>
+      <div class="feature" data-animate data-delay="2"><span class="feature-icon">🆓</span><h3>Gratuit</h3><p>Aucun frais, aucune inscription requise.</p></div>
+      <div class="feature" data-animate data-delay="3"><span class="feature-icon">📲</span><h3>Accessible</h3><p>Depuis votre téléphone, tablette ou ordinateur.</p></div>
+      <div class="feature" data-animate data-delay="4"><span class="feature-icon">🔒</span><h3>Sécurisé</h3><p>Vos données ne sont jamais stockées sur nos serveurs.</p></div>
     </div>
   </section>
 </main>

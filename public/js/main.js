@@ -156,3 +156,64 @@ window.changeLang = function changeLang(lang) {
     if (noResults) noResults.hidden = visible > 0;
   });
 })();
+
+/* ─── Scroll-triggered animations ───────────────────── */
+(function () {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('[data-animate]').forEach(function (el) {
+      el.classList.add('animated');
+    });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('[data-animate]').forEach(function (el) {
+    observer.observe(el);
+  });
+})();
+
+/* ─── Animated counter for stats bar ────────────────── */
+(function () {
+  var counter = document.querySelector('[data-counter]');
+  if (!counter) return;
+
+  var target = parseInt(counter.getAttribute('data-counter'), 10);
+  if (isNaN(target) || target <= 0) return;
+
+  var start = Math.max(0, target - Math.round(target * 0.25));
+  var duration = 1400;
+  var startTime = null;
+
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    var elapsed = timestamp - startTime;
+    var progress = Math.min(elapsed / duration, 1);
+    var value = Math.round(start + (target - start) * easeOut(progress));
+    counter.textContent = value.toLocaleString('fr-FR');
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    requestAnimationFrame(step);
+    return;
+  }
+
+  var obs = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) {
+      requestAnimationFrame(step);
+      obs.unobserve(counter);
+    }
+  }, { threshold: 0.5 });
+
+  obs.observe(counter);
+})();
