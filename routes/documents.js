@@ -6,12 +6,10 @@ const PDFDocument = require('pdfkit');
 
 // ── helpers ────────────────────────────────────────────────────────────────
 
+// Strip characters that have no place in plain PDF text content.
 function sanitize(value) {
   if (typeof value !== 'string') return '';
-  return value.replace(/[<>&"']/g, (c) => {
-    const map = { '<': '', '>': '', '&': '&', '"': '', "'": '' };
-    return map[c];
-  }).trim().slice(0, 500);
+  return value.replace(/[<>]/g, '').trim().slice(0, 500);
 }
 
 function startPDF(res, filename) {
