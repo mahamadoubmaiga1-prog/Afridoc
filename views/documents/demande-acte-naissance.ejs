@@ -1,0 +1,113 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>🪪 Demande d'acte de naissance</h1>
+    <p>Générez votre demande d'acte de naissance auprès de l'état civil en PDF.</p>
+  </div>
+
+  <form action="/documents/demande-acte-naissance/generate" method="POST" class="doc-form">
+
+    <fieldset>
+      <legend>Vos coordonnées</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prenom">Prénom *</label>
+          <input type="text" id="prenom" name="prenom" required maxlength="100" placeholder="Ex : Modibo">
+        </div>
+        <div class="form-group">
+          <label for="nom">Nom *</label>
+          <input type="text" id="nom" name="nom" required maxlength="100" placeholder="Ex : Sylla">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="adresse">Adresse *</label>
+        <input type="text" id="adresse" name="adresse" required maxlength="300" placeholder="Ex : Torokorobougou, Bamako">
+      </div>
+      <div class="form-group">
+        <label for="telephone">Téléphone *</label>
+        <input type="tel" id="telephone" name="telephone" required maxlength="30" placeholder="Ex : +223 73 00 00 00">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Informations d'état civil</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dateNaissance">Date de naissance *</label>
+          <input type="text" id="dateNaissance" name="dateNaissance" required maxlength="100" placeholder="Ex : 20 août 1998">
+        </div>
+        <div class="form-group">
+          <label for="lieuNaissance">Lieu de naissance *</label>
+          <input type="text" id="lieuNaissance" name="lieuNaissance" required maxlength="200" placeholder="Ex : Bamako (Commune IV)">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Filiation</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prenomPere">Prénom du père *</label>
+          <input type="text" id="prenomPere" name="prenomPere" required maxlength="100" placeholder="Ex : Boubacar">
+        </div>
+        <div class="form-group">
+          <label for="nomPere">Nom du père *</label>
+          <input type="text" id="nomPere" name="nomPere" required maxlength="100" placeholder="Ex : Sylla">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prenomMere">Prénom de la mère *</label>
+          <input type="text" id="prenomMere" name="prenomMere" required maxlength="100" placeholder="Ex : Mariam">
+        </div>
+        <div class="form-group">
+          <label for="nomMere">Nom de jeune fille de la mère *</label>
+          <input type="text" id="nomMere" name="nomMere" required maxlength="100" placeholder="Ex : Koné">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Détails de la demande</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombreCopies">Nombre de copies *</label>
+          <input type="number" id="nombreCopies" name="nombreCopies" required min="1" max="10" value="1">
+        </div>
+        <div class="form-group">
+          <label for="usage">Usage *</label>
+          <select id="usage" name="usage" required>
+            <option value="">-- Sélectionnez --</option>
+            <option value="inscription scolaire">Inscription scolaire</option>
+            <option value="constitution de dossier d'emploi">Constitution de dossier d'emploi</option>
+            <option value="demande de passeport">Demande de passeport</option>
+            <option value="demande de carte nationale d'identité">Demande de CNI</option>
+            <option value="mariage">Mariage</option>
+            <option value="concours administratif">Concours administratif</option>
+            <option value="usage administratif divers">Usage administratif divers</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ville">Ville *</label>
+          <input type="text" id="ville" name="ville" required maxlength="100" placeholder="Ex : Bamako">
+        </div>
+        <div class="form-group">
+          <label for="date">Date *</label>
+          <input type="text" id="date" name="date" required maxlength="50" placeholder="Ex : 14 juin 2024">
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary btn-lg">
+        📥 Générer la demande en PDF
+      </button>
+    </div>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

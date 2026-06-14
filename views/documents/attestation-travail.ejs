@@ -1,0 +1,84 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>📜 Attestation de travail</h1>
+    <p>Générez une attestation de travail officielle en PDF.</p>
+  </div>
+
+  <form action="/documents/attestation-travail/generate" method="POST" class="doc-form">
+
+    <fieldset>
+      <legend>Informations de l'employeur</legend>
+      <div class="form-group">
+        <label for="entreprise">Nom de l'entreprise / structure *</label>
+        <input type="text" id="entreprise" name="entreprise" required maxlength="300" placeholder="Ex : Société Mali Télécom SA">
+      </div>
+      <div class="form-group">
+        <label for="adresseEntreprise">Adresse de l'entreprise</label>
+        <input type="text" id="adresseEntreprise" name="adresseEntreprise" maxlength="300" placeholder="Ex : Avenue de l'OUA, Bamako">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="directeur">Nom du signataire *</label>
+          <input type="text" id="directeur" name="directeur" required maxlength="200" placeholder="Ex : M. Touré Boubacar">
+        </div>
+        <div class="form-group">
+          <label for="titre">Titre du signataire *</label>
+          <input type="text" id="titre" name="titre" required maxlength="200" placeholder="Ex : Directeur des Ressources Humaines">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Informations de l'employé(e)</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prenomEmp">Prénom de l'employé(e) *</label>
+          <input type="text" id="prenomEmp" name="prenomEmp" required maxlength="100" placeholder="Ex : Ibrahim">
+        </div>
+        <div class="form-group">
+          <label for="nomEmp">Nom de l'employé(e) *</label>
+          <input type="text" id="nomEmp" name="nomEmp" required maxlength="100" placeholder="Ex : Sissoko">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="posteEmp">Poste occupé *</label>
+        <input type="text" id="posteEmp" name="posteEmp" required maxlength="200" placeholder="Ex : Technicien réseau">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dateDebut">Date d'embauche *</label>
+          <input type="text" id="dateDebut" name="dateDebut" required maxlength="100" placeholder="Ex : 1er janvier 2020">
+        </div>
+        <div class="form-group">
+          <label for="salaire">Salaire mensuel brut (FCFA)</label>
+          <input type="text" id="salaire" name="salaire" maxlength="50" placeholder="Ex : 150 000">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Lieu et date</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ville">Ville *</label>
+          <input type="text" id="ville" name="ville" required maxlength="100" placeholder="Ex : Bamako">
+        </div>
+        <div class="form-group">
+          <label for="date">Date *</label>
+          <input type="text" id="date" name="date" required maxlength="50" placeholder="Ex : 14 juin 2024">
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary btn-lg">
+        📥 Générer l'attestation en PDF
+      </button>
+    </div>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

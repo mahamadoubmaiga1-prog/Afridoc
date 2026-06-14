@@ -1,0 +1,28 @@
+{
+  "name": "afridoc",
+  "version": "1.0.0",
+  "description": "Application de génération de documents administratifs au Mali et en Afrique",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node -e \"require('./server.js')\" && echo 'Server loads OK'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahamadoubmaiga1-prog/Afridoc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mahamadoubmaiga1-prog/Afridoc/issues"
+  },
+  "homepage": "https://github.com/mahamadoubmaiga1-prog/Afridoc#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "pdfkit": "^0.14.0"
+  }
+}

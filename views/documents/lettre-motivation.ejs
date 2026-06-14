@@ -1,0 +1,83 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>✉️ Lettre de motivation</h1>
+    <p>Rédigez votre lettre de motivation professionnelle en PDF.</p>
+  </div>
+
+  <form action="/documents/lettre-motivation/generate" method="POST" class="doc-form">
+
+    <fieldset>
+      <legend>Vos coordonnées</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prenom">Prénom *</label>
+          <input type="text" id="prenom" name="prenom" required maxlength="100" placeholder="Ex : Fatoumata">
+        </div>
+        <div class="form-group">
+          <label for="nom">Nom *</label>
+          <input type="text" id="nom" name="nom" required maxlength="100" placeholder="Ex : Traoré">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="adresse">Adresse *</label>
+        <input type="text" id="adresse" name="adresse" required maxlength="300" placeholder="Ex : Bamako, ACI 2000">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" maxlength="30" placeholder="Ex : +223 66 00 00 00">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" maxlength="200" placeholder="Ex : fatoumata@email.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ville">Ville *</label>
+          <input type="text" id="ville" name="ville" required maxlength="100" placeholder="Ex : Bamako">
+        </div>
+        <div class="form-group">
+          <label for="date">Date *</label>
+          <input type="text" id="date" name="date" required maxlength="50" placeholder="Ex : 14 juin 2024">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Destinataire</legend>
+      <div class="form-group">
+        <label for="destinataire">Nom du responsable / destinataire *</label>
+        <input type="text" id="destinataire" name="destinataire" required maxlength="200" placeholder="Ex : M. Diallo Ibrahim, Directeur RH">
+      </div>
+      <div class="form-group">
+        <label for="entreprise">Nom de l'entreprise / structure *</label>
+        <input type="text" id="entreprise" name="entreprise" required maxlength="200" placeholder="Ex : Société Orange Mali">
+      </div>
+      <div class="form-group">
+        <label for="poste">Poste visé *</label>
+        <input type="text" id="poste" name="poste" required maxlength="200" placeholder="Ex : Développeur Web Junior">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Corps de la lettre</legend>
+      <div class="form-group">
+        <label for="corps">Contenu de votre lettre *</label>
+        <textarea id="corps" name="corps" rows="10" maxlength="2000" required
+          placeholder="Rédigez ici le corps de votre lettre de motivation. Expliquez vos motivations, vos compétences et ce que vous apportez à l'entreprise..."></textarea>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary btn-lg">
+        📥 Générer ma lettre en PDF
+      </button>
+    </div>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

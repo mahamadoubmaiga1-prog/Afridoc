@@ -1,0 +1,80 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>🏛️ Lettre administrative</h1>
+    <p>Rédigez une lettre administrative formelle en PDF.</p>
+  </div>
+
+  <form action="/documents/lettre-administrative/generate" method="POST" class="doc-form">
+
+    <fieldset>
+      <legend>Vos coordonnées</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prenom">Prénom *</label>
+          <input type="text" id="prenom" name="prenom" required maxlength="100" placeholder="Ex : Kadiatou">
+        </div>
+        <div class="form-group">
+          <label for="nom">Nom *</label>
+          <input type="text" id="nom" name="nom" required maxlength="100" placeholder="Ex : Diallo">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="adresse">Adresse *</label>
+        <input type="text" id="adresse" name="adresse" required maxlength="300" placeholder="Ex : Sotuba, Bamako">
+      </div>
+      <div class="form-group">
+        <label for="telephone">Téléphone</label>
+        <input type="tel" id="telephone" name="telephone" maxlength="30" placeholder="Ex : +223 79 00 00 00">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ville">Ville *</label>
+          <input type="text" id="ville" name="ville" required maxlength="100" placeholder="Ex : Bamako">
+        </div>
+        <div class="form-group">
+          <label for="date">Date *</label>
+          <input type="text" id="date" name="date" required maxlength="50" placeholder="Ex : 14 juin 2024">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Destinataire</legend>
+      <div class="form-group">
+        <label for="destinataire">Nom et titre du destinataire *</label>
+        <input type="text" id="destinataire" name="destinataire" required maxlength="300"
+          placeholder="Ex : M. le Préfet du Cercle de Bamako">
+      </div>
+      <div class="form-group">
+        <label for="service">Service / Administration (optionnel)</label>
+        <input type="text" id="service" name="service" maxlength="300"
+          placeholder="Ex : Préfecture du District de Bamako">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Contenu de la lettre</legend>
+      <div class="form-group">
+        <label for="objet">Objet *</label>
+        <input type="text" id="objet" name="objet" required maxlength="300"
+          placeholder="Ex : Demande de régularisation de situation administrative">
+      </div>
+      <div class="form-group">
+        <label for="corps">Corps de la lettre *</label>
+        <textarea id="corps" name="corps" rows="10" maxlength="2000" required
+          placeholder="Rédigez ici le contenu de votre lettre administrative..."></textarea>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary btn-lg">
+        📥 Générer la lettre en PDF
+      </button>
+    </div>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

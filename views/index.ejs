@@ -1,0 +1,125 @@
+<%- include('partials/header') %>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Bienvenue sur <span class="highlight">Afridoc</span></h1>
+      <p class="hero-sub">
+        Générez vos documents administratifs en quelques clics,<br>
+        sans vous déplacer au cybercafé.
+      </p>
+      <a href="#documents" class="btn btn-primary">Commencer maintenant</a>
+    </div>
+    <div class="hero-graphic" aria-hidden="true">
+      <div class="hero-icon">📋</div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how-it-works container">
+    <h2 class="section-title">Comment ça marche ?</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Choisissez</h3>
+        <p>Sélectionnez le type de document que vous souhaitez créer.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Remplissez</h3>
+        <p>Saisissez vos informations dans le formulaire simple et guidé.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Téléchargez</h3>
+        <p>Obtenez votre document en PDF prêt à imprimer ou à envoyer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documents -->
+  <section id="documents" class="documents container">
+    <h2 class="section-title">Choisissez votre document</h2>
+    <div class="doc-grid">
+
+      <a href="/documents/cv" class="doc-card">
+        <div class="doc-icon">👤</div>
+        <h3>CV</h3>
+        <p>Curriculum Vitae professionnel</p>
+      </a>
+
+      <a href="/documents/lettre-motivation" class="doc-card">
+        <div class="doc-icon">✉️</div>
+        <h3>Lettre de motivation</h3>
+        <p>Pour accompagner votre candidature</p>
+      </a>
+
+      <a href="/documents/demande-emploi" class="doc-card">
+        <div class="doc-icon">💼</div>
+        <h3>Demande d'emploi</h3>
+        <p>Lettre de demande d'emploi</p>
+      </a>
+
+      <a href="/documents/demande-stage" class="doc-card">
+        <div class="doc-icon">🎓</div>
+        <h3>Demande de stage</h3>
+        <p>Demande de stage académique</p>
+      </a>
+
+      <a href="/documents/attestation-travail" class="doc-card">
+        <div class="doc-icon">📜</div>
+        <h3>Attestation de travail</h3>
+        <p>Attestation délivrée par l'employeur</p>
+      </a>
+
+      <a href="/documents/declaration-honneur" class="doc-card">
+        <div class="doc-icon">🤝</div>
+        <h3>Déclaration sur l'honneur</h3>
+        <p>Déclaration officielle sur l'honneur</p>
+      </a>
+
+      <a href="/documents/lettre-administrative" class="doc-card">
+        <div class="doc-icon">🏛️</div>
+        <h3>Lettre administrative</h3>
+        <p>Correspondance avec les administrations</p>
+      </a>
+
+      <a href="/documents/demande-acte-naissance" class="doc-card">
+        <div class="doc-icon">🪪</div>
+        <h3>Demande d'acte de naissance</h3>
+        <p>Demande auprès de l'état civil</p>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features container">
+    <h2 class="section-title">Pourquoi choisir Afridoc ?</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <span class="feature-icon">⚡</span>
+        <h3>Rapide</h3>
+        <p>Générez votre document en moins de 2 minutes.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🆓</span>
+        <h3>Gratuit</h3>
+        <p>Aucun frais, aucune inscription requise.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📲</span>
+        <h3>Accessible</h3>
+        <p>Depuis votre téléphone, tablette ou ordinateur.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔒</span>
+        <h3>Sécurisé</h3>
+        <p>Vos données ne sont jamais stockées sur nos serveurs.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

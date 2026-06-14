@@ -1,0 +1,13 @@
+<%- include('partials/header') %>
+
+<main class="container error-page">
+  <div class="error-content">
+    <div class="error-icon">⚠️</div>
+    <h1>Erreur</h1>
+    <h2>Une erreur s'est produite</h2>
+    <p><%= message || 'Veuillez réessayer plus tard.' %></p>
+    <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+  </div>
+</main>
+
+<%- include('partials/footer') %>

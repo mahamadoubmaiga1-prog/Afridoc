@@ -1,0 +1,105 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>🎓 Demande de stage</h1>
+    <p>Générez votre demande de stage académique en PDF.</p>
+  </div>
+
+  <form action="/documents/demande-stage/generate" method="POST" class="doc-form">
+
+    <fieldset>
+      <legend>Vos coordonnées</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prenom">Prénom *</label>
+          <input type="text" id="prenom" name="prenom" required maxlength="100" placeholder="Ex : Aminata">
+        </div>
+        <div class="form-group">
+          <label for="nom">Nom *</label>
+          <input type="text" id="nom" name="nom" required maxlength="100" placeholder="Ex : Diarra">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="adresse">Adresse *</label>
+        <input type="text" id="adresse" name="adresse" required maxlength="300" placeholder="Ex : Lafiabougou, Bamako">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="telephone">Téléphone *</label>
+          <input type="tel" id="telephone" name="telephone" required maxlength="30" placeholder="Ex : +223 65 00 00 00">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" maxlength="200" placeholder="Ex : aminata@email.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ville">Ville *</label>
+          <input type="text" id="ville" name="ville" required maxlength="100" placeholder="Ex : Bamako">
+        </div>
+        <div class="form-group">
+          <label for="date">Date *</label>
+          <input type="text" id="date" name="date" required maxlength="50" placeholder="Ex : 14 juin 2024">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Informations académiques</legend>
+      <div class="form-group">
+        <label for="etablissement">Établissement scolaire / universitaire *</label>
+        <input type="text" id="etablissement" name="etablissement" required maxlength="300" placeholder="Ex : Université des Sciences Juridiques et Politiques de Bamako">
+      </div>
+      <div class="form-group">
+        <label for="niveau">Niveau d'études *</label>
+        <input type="text" id="niveau" name="niveau" required maxlength="200" placeholder="Ex : Licence 2 en Droit des Affaires">
+      </div>
+      <div class="form-group">
+        <label for="domaine">Domaine du stage *</label>
+        <input type="text" id="domaine" name="domaine" required maxlength="200" placeholder="Ex : Finance et comptabilité">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Structure d'accueil</legend>
+      <div class="form-group">
+        <label for="directeur">Nom du responsable *</label>
+        <input type="text" id="directeur" name="directeur" required maxlength="200" placeholder="Ex : M. Koné Boubacar, Directeur Général">
+      </div>
+      <div class="form-group">
+        <label for="entreprise">Nom de la structure *</label>
+        <input type="text" id="entreprise" name="entreprise" required maxlength="200" placeholder="Ex : Banque Nationale de Développement Agricole (BNDA)">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Période du stage</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="duree">Durée du stage *</label>
+          <input type="text" id="duree" name="duree" required maxlength="100" placeholder="Ex : 2 mois">
+        </div>
+        <div class="form-group">
+          <label for="debut">Date de début souhaitée *</label>
+          <input type="text" id="debut" name="debut" required maxlength="100" placeholder="Ex : 1er juillet 2024">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="motivation">Motivation (optionnel)</label>
+        <textarea id="motivation" name="motivation" rows="5" maxlength="1000"
+          placeholder="Expliquez votre motivation pour ce stage..."></textarea>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary btn-lg">
+        📥 Générer ma demande en PDF
+      </button>
+    </div>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,110 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>📋 Curriculum Vitae (CV)</h1>
+    <p>Remplissez le formulaire ci-dessous pour générer votre CV professionnel en PDF.</p>
+  </div>
+
+  <form action="/documents/cv/generate" method="POST" class="doc-form">
+
+    <fieldset>
+      <legend>Informations personnelles</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prenom">Prénom *</label>
+          <input type="text" id="prenom" name="prenom" required maxlength="100" placeholder="Ex : Mamadou">
+        </div>
+        <div class="form-group">
+          <label for="nom">Nom *</label>
+          <input type="text" id="nom" name="nom" required maxlength="100" placeholder="Ex : Coulibaly">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="titre">Titre / Poste visé *</label>
+        <input type="text" id="titre" name="titre" required maxlength="200" placeholder="Ex : Ingénieur informatique">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dateNaissance">Date de naissance</label>
+          <input type="text" id="dateNaissance" name="dateNaissance" maxlength="50" placeholder="Ex : 15 mars 1995">
+        </div>
+        <div class="form-group">
+          <label for="nationalite">Nationalité</label>
+          <input type="text" id="nationalite" name="nationalite" maxlength="100" placeholder="Ex : Malienne">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <input type="text" id="adresse" name="adresse" maxlength="300" placeholder="Ex : Bamako, Commune III">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" maxlength="30" placeholder="Ex : +223 70 00 00 00">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" maxlength="200" placeholder="Ex : mamadou@email.com">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Profil professionnel</legend>
+      <div class="form-group">
+        <label for="profil">Résumé / Profil</label>
+        <textarea id="profil" name="profil" rows="4" maxlength="1000" placeholder="Décrivez-vous en quelques lignes..."></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Formation</legend>
+      <div class="form-group">
+        <label for="formation">Diplômes et formations *</label>
+        <textarea id="formation" name="formation" rows="5" maxlength="1000" required
+          placeholder="Ex :&#10;2018 - Licence en Gestion, FSEG Bamako&#10;2015 - BAC série D, Lycée Prosper Kamara"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Expérience professionnelle</legend>
+      <div class="form-group">
+        <label for="experience">Expériences</label>
+        <textarea id="experience" name="experience" rows="5" maxlength="1000"
+          placeholder="Ex :&#10;2020-2022 : Assistant comptable chez ABC SARL, Bamako&#10;2019 : Stage à la Direction des Finances"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Compétences et langues</legend>
+      <div class="form-group">
+        <label for="competences">Compétences</label>
+        <textarea id="competences" name="competences" rows="3" maxlength="500"
+          placeholder="Ex : Microsoft Office, Comptabilité, Gestion de projet..."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="langues">Langues parlées</label>
+        <input type="text" id="langues" name="langues" maxlength="300" placeholder="Ex : Français (courant), Bambara (natif), Anglais (intermédiaire)">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Références</legend>
+      <div class="form-group">
+        <label for="references">Références</label>
+        <textarea id="references" name="references" rows="3" maxlength="500"
+          placeholder="Ex : M. Diallo Moussa, Directeur, Tel : +223 76 00 00 00"></textarea>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary btn-lg">
+        📥 Générer mon CV en PDF
+      </button>
+    </div>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>
