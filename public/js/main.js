@@ -19,25 +19,84 @@
   });
 })();
 
-// Form submission feedback
+// Form submission feedback with better UX
 (function () {
   const forms = document.querySelectorAll('.doc-form');
   forms.forEach(function (form) {
-    form.addEventListener('submit', function () {
+    // Store original button text
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.setAttribute('data-original', submitBtn.textContent.trim());
+    }
+
+    form.addEventListener('submit', function (e) {
       const btn = form.querySelector('button[type="submit"]');
       if (!btn) return;
+      
+      // Disable button and show loading state
       btn.disabled = true;
+      btn.classList.add('btn-loading');
       btn.textContent = '⏳ Génération en cours…';
-      // Re-enable after 10s in case of issue
+      
+      // Re-enable after 15s in case of issue
       setTimeout(function () {
         btn.disabled = false;
+        btn.classList.remove('btn-loading');
         btn.textContent = btn.getAttribute('data-original') || '📥 Générer en PDF';
-      }, 10000);
+      }, 15000);
     });
   });
+})();
 
-  // Store original button text
-  document.querySelectorAll('.doc-form button[type="submit"]').forEach(function (btn) {
-    btn.setAttribute('data-original', btn.textContent.trim());
+// Form field validation and feedback
+(function () {
+  const formFields = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
+  
+  formFields.forEach(function (field) {
+    // Add visual feedback on focus
+    field.addEventListener('focus', function () {
+      this.parentElement.classList.add('focused');
+    });
+    
+    field.addEventListener('blur', function () {
+      this.parentElement.classList.remove('focused');
+      
+      // Simple validation
+      if (this.hasAttribute('required') && !this.value.trim()) {
+        this.parentElement.classList.add('has-error');
+      } else {
+        this.parentElement.classList.remove('has-error');
+      }
+    });
+    
+    // Remove error state when user starts typing
+    field.addEventListener('input', function () {
+      if (this.value.trim()) {
+        this.parentElement.classList.remove('has-error');
+      }
+    });
   });
+})();
+
+// Add loading button styles
+(function () {
+  const style = document.createElement('style');
+  style.textContent = `
+    .btn-loading {
+      opacity: 0.7;
+      position: relative;
+    }
+    
+    .form-group.has-error input,
+    .form-group.has-error textarea,
+    .form-group.has-error select {
+      border-color: #C62828 !important;
+      background-color: rgba(198, 40, 40, 0.05) !important;
+    }
+    
+    .form-group.focused label {
+      color: #1B5E20;
+    }
+  `;
+  document.head.appendChild(style);
 })();

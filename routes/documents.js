@@ -13,7 +13,7 @@ function sanitize(value) {
 }
 
 function startPDF(res, filename) {
-  const doc = new PDFDocument({ margin: 50, size: 'A4' });
+  const doc = new PDFDocument({ margin: 48, size: 'A4' });
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
   doc.pipe(res);
@@ -21,70 +21,112 @@ function startPDF(res, filename) {
 }
 
 function pdfHeader(doc, title) {
+  // Professional header with gradient effect (simulated with multiple elements)
+  const pageWidth = doc.page.width;
+  
+  // Main header background - darker green
   doc
-    .rect(0, 0, doc.page.width, 80)
-    .fill('#2E7D32');
+    .rect(0, 0, pageWidth, 100)
+    .fill('#1B5E20');
+  
+  // Accent bar
+  doc
+    .rect(0, 95, pageWidth, 5)
+    .fill('#FFD700');
+  
+  // Brand text - centered and prominent
   doc
     .fillColor('#FFD700')
-    .fontSize(22)
+    .fontSize(28)
     .font('Helvetica-Bold')
-    .text('AFRIDOC', 50, 20, { align: 'center' });
+    .text('AFRIDOC', 48, 18, { align: 'center' });
+  
+  // Tagline
   doc
     .fillColor('#FFFFFF')
-    .fontSize(12)
+    .fontSize(11)
     .font('Helvetica')
-    .text('Génération de Documents Administratifs', 50, 48, { align: 'center' });
-  doc.moveDown(3);
+    .text('Génération Professionnelle de Documents Administratifs', 48, 52, { align: 'center' });
+  
+  // Document title
+  doc.moveDown(2.5);
   doc
-    .fillColor('#2E7D32')
-    .fontSize(18)
+    .fillColor('#1B5E20')
+    .fontSize(16)
     .font('Helvetica-Bold')
-    .text(title, { align: 'center', underline: true });
-  doc.moveDown(1);
-  doc.fillColor('#222222').font('Helvetica').fontSize(11);
+    .text(title, { align: 'center' });
+  
+  // Separator line
+  doc
+    .moveTo(48, doc.y + 8)
+    .lineTo(pageWidth - 48, doc.y + 8)
+    .strokeColor('#FFD700')
+    .lineWidth(2)
+    .stroke();
+  
+  doc.moveDown(1.5);
+  doc.fillColor('#333333').font('Helvetica').fontSize(10);
 }
 
 function pdfFooter(doc) {
-  const bottom = doc.page.height - 40;
+  const bottom = doc.page.height - 50;
+  
+  // Separator line
   doc
-    .moveTo(50, bottom)
-    .lineTo(doc.page.width - 50, bottom)
-    .strokeColor('#2E7D32')
+    .moveTo(48, bottom)
+    .lineTo(doc.page.width - 48, bottom)
+    .strokeColor('#FFD700')
+    .lineWidth(1)
     .stroke();
+  
+  // Footer text
   doc
-    .fillColor('#888888')
+    .fillColor('#666666')
     .fontSize(9)
-    .text('Document généré par Afridoc — afridoc.ml', 50, bottom + 6, {
+    .font('Helvetica')
+    .text('Généré par Afridoc — Document Administratif Professionnel', 48, bottom + 10, {
+      align: 'center',
+    });
+  
+  // Date generated
+  doc
+    .fillColor('#999999')
+    .fontSize(8)
+    .text(`Generated on ${new Date().toLocaleDateString('fr-FR')}`, 48, bottom + 22, {
       align: 'center',
     });
 }
 
 function field(doc, label, value) {
   doc
-    .fillColor('#2E7D32')
+    .fillColor('#1B5E20')
     .font('Helvetica-Bold')
-    .fontSize(11)
-    .text(`${label} : `, { continued: true });
+    .fontSize(10)
+    .text(`${label}: `, { continued: true });
+  
   doc
-    .fillColor('#222222')
+    .fillColor('#333333')
     .font('Helvetica')
-    .text(value || '—');
+    .text(value || '_____________________________');
 }
 
 function sectionTitle(doc, title) {
-  doc.moveDown(0.5);
+  doc.moveDown(0.8);
+  
+  // Background color for section title
   doc
-    .fillColor('#2E7D32')
-    .fontSize(13)
+    .rect(48, doc.y, doc.page.width - 96, 22)
+    .fill('#F5F5F5');
+  
+  // Title text
+  doc
+    .fillColor('#1B5E20')
+    .fontSize(12)
     .font('Helvetica-Bold')
-    .text(title.toUpperCase());
-  doc
-    .moveTo(50, doc.y)
-    .lineTo(doc.page.width - 50, doc.y)
-    .strokeColor('#2E7D32')
-    .stroke();
-  doc.moveDown(0.4);
-  doc.fillColor('#222222').font('Helvetica').fontSize(11);
+    .text(title.toUpperCase(), 50, doc.y + 5, { width: doc.page.width - 100 });
+  
+  doc.moveDown(1.2);
+  doc.fillColor('#333333').font('Helvetica').fontSize(10);
 }
 
 // ── GET routes (forms) ────────────────────────────────────────────────────
