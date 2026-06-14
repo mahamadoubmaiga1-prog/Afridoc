@@ -7,15 +7,8 @@
     <div class="about-grid">
       <div class="about-text">
         <h2>Notre mission</h2>
-        <p>
-          <strong>Afridoc</strong> est une application web gratuite qui permet à tous les citoyens
-          maliens et africains de générer facilement leurs documents administratifs, sans avoir
-          besoin de se déplacer dans un cybercafé.
-        </p>
-        <p>
-          Nous croyons que chaque personne devrait avoir accès aux outils nécessaires pour
-          créer ses documents officiels depuis son domicile, son téléphone ou n'importe où.
-        </p>
+        <p><strong>Afridoc</strong> est une application web gratuite qui permet à tous les citoyens maliens et africains de générer facilement leurs documents administratifs, sans avoir besoin de se déplacer dans un cybercafé.</p>
+        <p>Nous croyons que chaque personne devrait avoir accès aux outils nécessaires pour créer ses documents officiels depuis son domicile, son téléphone ou n'importe où.</p>
 
         <h2>Documents disponibles</h2>
         <ul class="about-list">
@@ -27,23 +20,28 @@
           <li>🤝 Déclaration sur l'honneur</li>
           <li>🏛️ Lettre administrative</li>
           <li>🪪 Demande d'acte de naissance</li>
+          <li>🧾 Contrat de travail</li>
+          <li>💳 Reçu de paiement</li>
+          <li>🖊️ Procuration</li>
+          <li>🌴 Demande de congé</li>
+          <li>🏠 Certificat de résidence</li>
+          <li>🌟 Lettre de recommandation</li>
+          <li>⚖️ Mise en demeure</li>
+          <li>🏫 Attestation de scolarité</li>
         </ul>
 
         <h2>Confidentialité</h2>
-        <p>
-          Aucune donnée personnelle n'est conservée sur nos serveurs. Les documents
-          sont générés à la volée et téléchargés directement sur votre appareil.
-        </p>
+        <p>Aucune donnée personnelle n'est conservée sur nos serveurs. Les documents sont générés à la volée et téléchargés directement sur votre appareil.</p>
 
         <div class="about-cta">
-          <a href="/" class="btn btn-primary">Générer un document</a>
+          <a href="/" class="btn btn-primary"><%= (t && t.startNow) || 'Générer un document' %></a>
         </div>
       </div>
 
       <div class="about-sidebar">
         <div class="stat-card">
           <div class="stat-icon">📄</div>
-          <div class="stat-num">8</div>
+          <div class="stat-num">16</div>
           <div class="stat-label">Types de documents</div>
         </div>
         <div class="stat-card">

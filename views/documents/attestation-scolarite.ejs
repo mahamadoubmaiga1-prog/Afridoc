@@ -1,0 +1,80 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>🏫 Attestation de scolarité</h1>
+    <p>Créez une attestation de scolarité en PDF pour un élève.</p>
+  </div>
+
+  <form action="/documents/attestation-scolarite/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
+
+    <fieldset>
+      <legend>Établissement</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="directeur">Nom du directeur *</label>
+        <input type="text" id="directeur" name="directeur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Mme Diallo">
+      </div>
+      <div class="form-group">
+        <label for="titreDirecteur">Titre du directeur *</label>
+        <input type="text" id="titreDirecteur" name="titreDirecteur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Directrice des études">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="etablissement">Établissement *</label>
+        <input type="text" id="etablissement" name="etablissement" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Lycée Les Cimes">
+      </div>
+      <div class="form-group">
+        <label for="adresseEtablissement">Adresse de l'établissement *</label>
+        <input type="text" id="adresseEtablissement" name="adresseEtablissement" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako, Badalabougou">
+      </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Élève</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="prenomEleve">Prénom de l'élève *</label>
+        <input type="text" id="prenomEleve" name="prenomEleve" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Fanta">
+      </div>
+      <div class="form-group">
+        <label for="nomEleve">Nom de l'élève *</label>
+        <input type="text" id="nomEleve" name="nomEleve" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Coulibaly">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="dateNaissanceEleve">Date de naissance *</label>
+        <input type="text" id="dateNaissanceEleve" name="dateNaissanceEleve" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 7 janvier 2010">
+      </div>
+      <div class="form-group">
+        <label for="classe">Classe *</label>
+        <input type="text" id="classe" name="classe" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 6e année">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="anneeScolaire">Année scolaire *</label>
+        <input type="text" id="anneeScolaire" name="anneeScolaire" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 2024-2025">
+      </div>
+      <div class="form-group">
+        <label for="ville">Ville *</label>
+        <input type="text" id="ville" name="ville" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako">
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="date">Date *</label>
+        <input type="text" id="date" name="date" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 14 juin 2024">
+      </div>
+    </fieldset>
+
+    <%- include('partials/form-actions', { docType: 'attestation-scolarite', submitLabel: "📥 Générer l'attestation en PDF" }) %>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "node server.js",
     "build": "echo 'Preparing for deployment...' && npm install",
-    "test": "node -e \"require('./server.js')\" && echo 'Server loads OK'",
+    "test": "mocha tests/integration.test.js --timeout 10000",
     "deploy:backend": "echo 'Deploy backend to Neon - push to main branch'",
     "deploy:frontend": "echo 'Deploy frontend to Vercel - vercel --prod'"
   },
@@ -24,8 +24,15 @@
   },
   "homepage": "https://github.com/mahamadoubmaiga1-prog/Afridoc#readme",
   "dependencies": {
+    "compression": "^1.8.1",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "pdfkit": "^0.14.0"
+    "express-rate-limit": "^8.5.2",
+    "morgan": "^1.11.0",
+    "pdfkit": "^0.14.0",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "mocha": "^11.3.0"
   }
 }

@@ -1,0 +1,98 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>💳 Reçu de paiement</h1>
+    <p>Générez un reçu de paiement officiel prêt à imprimer.</p>
+  </div>
+
+  <form action="/documents/recu-paiement/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
+
+    <fieldset>
+      <legend>Payeur</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="prenomPayeur">Prénom du payeur *</label>
+        <input type="text" id="prenomPayeur" name="prenomPayeur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Aïssata">
+      </div>
+      <div class="form-group">
+        <label for="nomPayeur">Nom du payeur *</label>
+        <input type="text" id="nomPayeur" name="nomPayeur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Koné">
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="adressePayeur">Adresse du payeur *</label>
+        <input type="text" id="adressePayeur" name="adressePayeur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako, Kalaban Coura">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Bénéficiaire</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="prenomBeneficiaire">Prénom du bénéficiaire *</label>
+        <input type="text" id="prenomBeneficiaire" name="prenomBeneficiaire" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Oumar">
+      </div>
+      <div class="form-group">
+        <label for="nomBeneficiaire">Nom du bénéficiaire *</label>
+        <input type="text" id="nomBeneficiaire" name="nomBeneficiaire" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Coulibaly">
+      </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Paiement</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="montant">Montant *</label>
+        <input type="text" id="montant" name="montant" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 150000">
+      </div>
+      <div class="form-group">
+        <label for="monnaie">Monnaie *</label>
+        <select id="monnaie" name="monnaie" required data-help="Ce champ sera affiché dans le document final.">
+          <option value="">Sélectionnez</option>
+            <option value="FCFA">FCFA</option>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+        </select>
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="motif">Motif *</label>
+        <textarea id="motif" name="motif" rows="5" maxlength="2000" required data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Paiement des frais de dossier"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="modePaiement">Mode de paiement *</label>
+        <select id="modePaiement" name="modePaiement" required data-help="Ce champ sera affiché dans le document final.">
+          <option value="">Sélectionnez</option>
+            <option value="espèces">espèces</option>
+            <option value="virement">virement</option>
+            <option value="mobile money">mobile money</option>
+        </select>
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="numeroRecu">Numéro de reçu *</label>
+        <input type="text" id="numeroRecu" name="numeroRecu" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : REC-2024-001">
+      </div>
+      <div class="form-group">
+        <label for="ville">Ville *</label>
+        <input type="text" id="ville" name="ville" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Sikasso">
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="date">Date *</label>
+        <input type="text" id="date" name="date" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 14 juin 2024">
+      </div>
+    </fieldset>
+
+    <%- include('partials/form-actions', { docType: 'recu-paiement', submitLabel: "📥 Générer le reçu en PDF" }) %>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

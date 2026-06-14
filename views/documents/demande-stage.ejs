@@ -7,7 +7,9 @@
     <p>Générez votre demande de stage académique en PDF.</p>
   </div>
 
-  <form action="/documents/demande-stage/generate" method="POST" class="doc-form">
+  <form action="/documents/demande-stage/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
 
     <fieldset>
       <legend>Vos coordonnées</legend>
@@ -93,12 +95,7 @@
           placeholder="Expliquez votre motivation pour ce stage..."></textarea>
       </div>
     </fieldset>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary btn-lg">
-        📥 Générer ma demande en PDF
-      </button>
-    </div>
+    <%- include('partials/form-actions', { docType: 'demande-stage', submitLabel: "📥 Générer ma demande de stage en PDF" }) %>
   </form>
 </main>
 

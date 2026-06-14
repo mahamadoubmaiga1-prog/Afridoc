@@ -1,10 +1,12 @@
   <footer class="footer">
     <div class="footer-inner">
       <p class="footer-brand">📄 <strong>Afridoc</strong></p>
-      <p>Application de génération de documents administratifs<br>au Mali et en Afrique</p>
+      <p><%= (t && t.footerText) || 'Application de génération de documents administratifs au Mali et en Afrique' %></p>
       <p class="footer-copy">&copy; 2024 Afridoc. Tous droits réservés.</p>
     </div>
   </footer>
   <script src="/js/main.js"></script>
+  <script src="/js/form-save.js"></script>
+  <script src="/js/sw-register.js"></script>
 </body>
 </html>

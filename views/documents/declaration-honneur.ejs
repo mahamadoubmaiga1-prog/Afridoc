@@ -7,7 +7,9 @@
     <p>Rédigez votre déclaration sur l'honneur officielle en PDF.</p>
   </div>
 
-  <form action="/documents/declaration-honneur/generate" method="POST" class="doc-form">
+  <form action="/documents/declaration-honneur/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
 
     <fieldset>
       <legend>Identité du déclarant</legend>
@@ -68,12 +70,7 @@
         </div>
       </div>
     </fieldset>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary btn-lg">
-        📥 Générer la déclaration en PDF
-      </button>
-    </div>
+    <%- include('partials/form-actions', { docType: 'declaration-honneur', submitLabel: "📥 Générer ma déclaration en PDF" }) %>
   </form>
 </main>
 

@@ -1,0 +1,122 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>🧾 Contrat de travail</h1>
+    <p>Préparez un contrat de travail clair et professionnel en PDF.</p>
+  </div>
+
+  <form action="/documents/contrat-travail/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
+
+    <fieldset>
+      <legend>Employeur</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="employeur">Entreprise *</label>
+        <input type="text" id="employeur" name="employeur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Afridoc SARL">
+      </div>
+      <div class="form-group">
+        <label for="adresseEmployeur">Adresse de l'employeur *</label>
+        <input type="text" id="adresseEmployeur" name="adresseEmployeur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako, ACI 2000">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="representant">Représentant légal *</label>
+        <input type="text" id="representant" name="representant" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Mme Traoré Awa">
+      </div>
+      <div class="form-group">
+        <label for="titreRepresentant">Titre du représentant *</label>
+        <input type="text" id="titreRepresentant" name="titreRepresentant" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Directrice générale">
+      </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Salarié</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="prenomEmp">Prénom du salarié *</label>
+        <input type="text" id="prenomEmp" name="prenomEmp" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Moussa">
+      </div>
+      <div class="form-group">
+        <label for="nomEmp">Nom du salarié *</label>
+        <input type="text" id="nomEmp" name="nomEmp" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Diallo">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="adresseEmp">Adresse du salarié *</label>
+        <input type="text" id="adresseEmp" name="adresseEmp" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Ségou, Quartier Château">
+      </div>
+      <div class="form-group">
+        <label for="dateNaissance">Date de naissance *</label>
+        <input type="text" id="dateNaissance" name="dateNaissance" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 12 mai 1998">
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="nationalite">Nationalité *</label>
+        <input type="text" id="nationalite" name="nationalite" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Malienne">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Contrat</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="poste">Poste *</label>
+        <input type="text" id="poste" name="poste" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Assistant administratif">
+      </div>
+      <div class="form-group">
+        <label for="typeContrat">Type de contrat *</label>
+        <select id="typeContrat" name="typeContrat" required data-help="Ce champ sera affiché dans le document final.">
+          <option value="">Sélectionnez</option>
+            <option value="CDI">CDI</option>
+            <option value="CDD">CDD</option>
+        </select>
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="duree">Durée (si CDD)</label>
+        <input type="text" id="duree" name="duree" maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 12 mois">
+      </div>
+      <div class="form-group">
+        <label for="dateDebut">Date de début *</label>
+        <input type="text" id="dateDebut" name="dateDebut" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 1er juillet 2024">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="salaire">Salaire *</label>
+        <input type="text" id="salaire" name="salaire" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 250000">
+      </div>
+      <div class="form-group">
+        <label for="periodeEssai">Période d'essai</label>
+        <input type="text" id="periodeEssai" name="periodeEssai" maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 3 mois">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="lieuTravail">Lieu de travail *</label>
+        <input type="text" id="lieuTravail" name="lieuTravail" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako, Commune IV">
+      </div>
+      <div class="form-group">
+        <label for="ville">Ville *</label>
+        <input type="text" id="ville" name="ville" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako">
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="date">Date *</label>
+        <input type="text" id="date" name="date" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 14 juin 2024">
+      </div>
+    </fieldset>
+
+    <%- include('partials/form-actions', { docType: 'contrat-travail', submitLabel: "📥 Générer le contrat en PDF" }) %>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

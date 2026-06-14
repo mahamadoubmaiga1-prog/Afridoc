@@ -1,0 +1,98 @@
+<%- include('../partials/header') %>
+
+<main class="container form-page">
+  <div class="form-header">
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <h1>⚖️ Mise en demeure</h1>
+    <p>Préparez une mise en demeure professionnelle et structurée.</p>
+  </div>
+
+  <form action="/documents/mise-en-demeure/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
+
+    <fieldset>
+      <legend>Créancier</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="prenomCreancier">Prénom du créancier *</label>
+        <input type="text" id="prenomCreancier" name="prenomCreancier" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Adama">
+      </div>
+      <div class="form-group">
+        <label for="nomCreancier">Nom du créancier *</label>
+        <input type="text" id="nomCreancier" name="nomCreancier" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Keïta">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="adresseCreancier">Adresse *</label>
+        <input type="text" id="adresseCreancier" name="adresseCreancier" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako, Hamdallaye">
+      </div>
+      <div class="form-group">
+        <label for="emailCreancier">Email</label>
+        <input type="email" id="emailCreancier" name="emailCreancier" maxlength="120" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : adama@email.com">
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="telCreancier">Téléphone</label>
+        <input type="tel" id="telCreancier" name="telCreancier" maxlength="30" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : +223 70 00 00 00">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Débiteur</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="prenomDebiteur">Prénom du débiteur *</label>
+        <input type="text" id="prenomDebiteur" name="prenomDebiteur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Salif">
+      </div>
+      <div class="form-group">
+        <label for="nomDebiteur">Nom du débiteur *</label>
+        <input type="text" id="nomDebiteur" name="nomDebiteur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Traoré">
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="adresseDebiteur">Adresse *</label>
+        <input type="text" id="adresseDebiteur" name="adresseDebiteur" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Kati, N'Golobougou">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Objet du litige</legend>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="objet">Objet *</label>
+        <input type="text" id="objet" name="objet" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Paiement d'une facture impayée">
+      </div>
+      <div class="form-group">
+        <label for="montant">Montant *</label>
+        <input type="text" id="montant" name="montant" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 500000">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="echeance">Échéance initiale *</label>
+        <input type="text" id="echeance" name="echeance" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 31 mai 2024">
+      </div>
+      <div class="form-group">
+        <label for="delaiReponse">Délai de réponse *</label>
+        <input type="text" id="delaiReponse" name="delaiReponse" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 8 jours">
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="ville">Ville *</label>
+        <input type="text" id="ville" name="ville" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : Bamako">
+      </div>
+      <div class="form-group">
+        <label for="date">Date *</label>
+        <input type="text" id="date" name="date" required maxlength="200" data-help="Ce champ sera affiché dans le document final." placeholder="Ex : 14 juin 2024">
+      </div>
+      </div>
+    </fieldset>
+
+    <%- include('partials/form-actions', { docType: 'mise-en-demeure', submitLabel: "📥 Générer la mise en demeure en PDF" }) %>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

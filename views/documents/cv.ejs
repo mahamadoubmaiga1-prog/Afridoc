@@ -7,7 +7,9 @@
     <p>Remplissez le formulaire ci-dessous pour générer votre CV professionnel en PDF.</p>
   </div>
 
-  <form action="/documents/cv/generate" method="POST" class="doc-form">
+  <form action="/documents/cv/generate" method="POST" class="doc-form doc-form--themed">
+
+    <%- include('partials/theme-selector') %>
 
     <fieldset>
       <legend>Informations personnelles</legend>
@@ -98,12 +100,7 @@
           placeholder="Ex : M. Diallo Moussa, Directeur, Tel : +223 76 00 00 00"></textarea>
       </div>
     </fieldset>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary btn-lg">
-        📥 Générer mon CV en PDF
-      </button>
-    </div>
+    <%- include('partials/form-actions', { docType: 'cv', submitLabel: "📥 Générer mon CV en PDF" }) %>
   </form>
 </main>
 
