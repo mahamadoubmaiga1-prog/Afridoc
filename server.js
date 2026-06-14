@@ -30,12 +30,23 @@ function parseCookies(header) {
   }, {});
 }
 
+const rateLimitMessages = {
+  fr: 'Trop de générations de documents. Réessayez dans 15 minutes.',
+  en: 'Too many document generations. Please try again in 15 minutes.',
+  bm: 'Dɔkimani kɛcogo caaman. Segin miniti 15 kɔfɛ.',
+};
+
 const generateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 15,
   standardHeaders: true,
   legacyHeaders: false,
-  message: 'Trop de générations de documents. Réessayez dans 15 minutes.',
+  message: (req) => {
+    const cookies = parseCookies(req.headers.cookie);
+    const lang = supportedLangs.includes(req.query.lang) ? req.query.lang
+      : supportedLangs.includes(cookies.lang) ? cookies.lang : 'fr';
+    return rateLimitMessages[lang] || rateLimitMessages.fr;
+  },
 });
 
 app.set('view engine', 'ejs');

@@ -502,13 +502,19 @@ const docDefinitions = {
 
 const docTypes = Object.keys(docDefinitions);
 
+// Long fields (profil, formation, motivation…) can reasonably reach 2000 chars,
+// so we use 2000 as the global upper bound to accommodate all field types.
 function sanitize(value) {
   if (typeof value !== 'string') return '';
   return value.replace(/[<>]/g, '').trim().slice(0, 2000);
 }
 
 function safeFilename(value) {
-  return sanitize(value || 'document').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'document';
+  const base = sanitize(value || '').normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  return base || 'document';
 }
 
 function escapeHtml(value) {

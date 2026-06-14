@@ -19,7 +19,7 @@
     </ul>
     <div class="navbar-right">
       <div class="lang-selector">
-        <select id="langSelect" onchange="changeLang(this.value)">
+        <select id="langSelect" aria-label="Sélectionner la langue / Select language" onchange="changeLang(this.value)">
           <option value="fr" <%= lang === 'fr' ? 'selected' : '' %>>🇫🇷 FR</option>
           <option value="en" <%= lang === 'en' ? 'selected' : '' %>>🇬🇧 EN</option>
           <option value="bm" <%= lang === 'bm' ? 'selected' : '' %>>🎯 BM</option>

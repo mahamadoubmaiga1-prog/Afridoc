@@ -43,7 +43,7 @@ self.addEventListener('fetch', (event) => {
           }
           return response;
         })
-        .catch(() => cached || new Response('Hors ligne', { status: 503 }));
+        .catch(() => cached || new Response('503 – Offline / Hors ligne', { status: 503 }));
     })
   );
 });

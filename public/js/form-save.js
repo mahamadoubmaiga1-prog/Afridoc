@@ -1,7 +1,16 @@
 'use strict';
 
+// Resolve locale from the <html lang> attribute for date formatting.
+// Bambara doesn't have its own date locale; fall back to fr-FR.
+function getDateLocale() {
+  const lang = (document.documentElement.lang || 'fr').toLowerCase();
+  if (lang === 'en') return 'en-GB';
+  return 'fr-FR';
+}
+
 (function () {
-  const today = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
+  const locale = getDateLocale();
+  const today = new Date().toLocaleDateString(locale, { day: '2-digit', month: 'long', year: 'numeric' });
   document.querySelectorAll('input[name="date"]').forEach(function (input) {
     if (!input.value) input.value = today;
   });
@@ -64,8 +73,9 @@
       e.preventDefault();
       localStorage.removeItem(formKey);
       form.reset();
+      const locale = getDateLocale();
       document.querySelectorAll('input[name="date"]').forEach(function (input) {
-        input.value = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
+        input.value = new Date().toLocaleDateString(locale, { day: '2-digit', month: 'long', year: 'numeric' });
       });
       const checked = document.querySelector('input[name="theme"]:checked');
       if (checked) document.body.setAttribute('data-theme', checked.value);
