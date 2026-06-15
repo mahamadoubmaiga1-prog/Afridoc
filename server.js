@@ -131,17 +131,21 @@ app.use((req, res, next) => {
 });
 
 /* ─── Serve sw.js with injected cache version ─────────── */
-app.get('/sw.js', (req, res) => {
+/* Read and patch sw.js once at startup to avoid repeated disk access */
+const swContent = (() => {
   try {
-    const swContent = fs.readFileSync(path.join(__dirname, 'public', 'sw.js'), 'utf8')
+    return fs.readFileSync(path.join(__dirname, 'public', 'sw.js'), 'utf8')
       .replace("'AFRIDOC_CACHE_VERSION'", `'${SW_CACHE_VERSION}'`);
-    res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
-    res.setHeader('Cache-Control', 'no-store');
-    res.send(swContent);
   } catch (e) {
-    console.error('Failed to serve sw.js:', e);
-    res.status(500).send('/* Service Worker unavailable */');
+    console.error('Failed to read sw.js at startup:', e);
+    return '/* Service Worker unavailable */';
   }
+})();
+
+app.get('/sw.js', (req, res) => {
+  res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+  res.setHeader('Cache-Control', 'no-store');
+  res.send(swContent);
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
