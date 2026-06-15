@@ -1,7 +1,12 @@
 <%- include('../partials/header') %>
-<main class="container form-page">
+<main id="main-content" class="container form-page">
   <div class="form-header">
-    <a href="/documents/<%= docType %>" class="back-link">← Modifier le formulaire</a>
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+      <a href="/">Accueil</a><span aria-hidden="true"> › </span>
+      <a href="/documents/<%= docType %>"><%= docTitle %></a>
+      <span aria-hidden="true"> › </span>
+      <span aria-current="page">Aperçu</span>
+    </nav>
     <h1>Aperçu : <%= docTitle %></h1>
     <p>Vérifiez votre document avant de télécharger le PDF.</p>
   </div>
@@ -33,6 +38,7 @@
     <% }) %>
     <input type="hidden" name="theme" value="<%= theme %>">
     <a href="/documents/<%= docType %>" class="btn btn-secondary">✏️ Modifier</a>
+    <button type="button" class="btn btn-secondary btn-share" id="shareBtn" aria-label="Partager ce formulaire">🔗 Partager</button>
     <button type="submit" class="btn btn-primary btn-lg">📥 Télécharger le PDF</button>
   </form>
 </main>

@@ -704,7 +704,12 @@ function buildPreviewHtml(type, data) {
 
 function finishPDF(doc) {
   doc.end();
-  if (global.docStats) global.docStats.total++;
+  if (global.docStats) {
+    global.docStats.total++;
+    if (typeof global.saveStats === 'function') {
+      global.saveStats(global.docStats);
+    }
+  }
 }
 
 router.get('/:type/preview', (req, res, next) => {
@@ -734,7 +739,10 @@ router.post('/:type/preview', async (req, res, next) => {
 router.get('/:type', (req, res, next) => {
   const { type } = req.params;
   if (!docTypes.includes(type)) return next();
-  res.render(`documents/${type}`, { preview: req.query.preview === 'true', docType: type, docTitle: getDocTitle(type) });
+  const docTitle = getDocTitle(type);
+  res.locals.pageTitle = `${docTitle} — Afridoc`;
+  res.locals.pageDesc = `Générez votre ${docTitle} en PDF gratuitement avec Afridoc.`;
+  res.render(`documents/${type}`, { preview: req.query.preview === 'true', docType: type, docTitle });
 });
 
 docTypes.forEach((type) => {

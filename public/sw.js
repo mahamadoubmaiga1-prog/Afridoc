@@ -1,6 +1,7 @@
 'use strict';
 
-const CACHE_NAME = 'afridoc-v1';
+// AFRIDOC_CACHE_VERSION is replaced server-side at request time with the app version.
+const CACHE_NAME = 'AFRIDOC_CACHE_VERSION';
 const STATIC_ASSETS = [
   '/',
   '/about',

@@ -1,23 +1,50 @@
 <!DOCTYPE html>
-<html lang="<%= lang || 'fr' %>">
+<html lang="<%= lang || 'fr' %>" data-theme="">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1B5E20">
-  <title>Afridoc — Documents Administratifs</title>
+  <title><%= pageTitle || 'Afridoc — Documents Administratifs' %></title>
+  <meta name="description" content="<%= pageDesc || 'Générez gratuitement vos documents administratifs officiels en PDF : CV, lettres, attestations, contrats et plus.' %>">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="<%= canonical || 'https://afridoc.app' %>">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Afridoc">
+  <meta property="og:title" content="<%= pageTitle || 'Afridoc — Documents Administratifs' %>">
+  <meta property="og:description" content="<%= pageDesc || 'Générez gratuitement vos documents administratifs officiels en PDF.' %>">
+  <meta property="og:url" content="<%= canonical || 'https://afridoc.app' %>">
+  <meta property="og:locale" content="<%= lang === 'en' ? 'en_GB' : 'fr_FR' %>">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="<%= pageTitle || 'Afridoc' %>">
+  <meta name="twitter:description" content="<%= pageDesc || 'Générez vos documents administratifs en PDF gratuitement.' %>">
+
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="stylesheet" href="/css/style.css">
   <link rel="manifest" href="/manifest.json">
 </head>
 <body>
-  <nav class="navbar">
-    <a href="/" class="navbar-brand">
-      <span class="brand-icon">📄</span> Afridoc
+  <a href="#main-content" class="skip-to-content"><%= (t && t.skipToContent) || 'Aller au contenu principal' %></a>
+
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <a href="/" class="navbar-brand" aria-label="Afridoc — Accueil">
+      <span class="brand-icon" aria-hidden="true">📄</span> Afridoc
     </a>
-    <ul class="navbar-nav">
-      <li><a href="/"><%= (t && t.navHome) || 'Accueil' %></a></li>
-      <li><a href="/about"><%= (t && t.navAbout) || 'À propos' %></a></li>
+    <ul class="navbar-nav" id="navbar-nav">
+      <li><a href="/" <%= (typeof activePage !== 'undefined' && activePage === 'home') ? 'aria-current="page"' : '' %>><%= (t && t.navHome) || 'Accueil' %></a></li>
+      <li><a href="/about" <%= (typeof activePage !== 'undefined' && activePage === 'about') ? 'aria-current="page"' : '' %>><%= (t && t.navAbout) || 'À propos' %></a></li>
+      <li><a href="/faq" <%= (typeof activePage !== 'undefined' && activePage === 'faq') ? 'aria-current="page"' : '' %>><%= (t && t.navFaq) || 'FAQ' %></a></li>
     </ul>
     <div class="navbar-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="<%= (t && t.darkModeToggle) || 'Activer le mode sombre' %>" title="<%= (t && t.darkModeToggle) || 'Activer le mode sombre' %>">
+        <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+      </button>
       <div class="lang-selector">
         <select id="langSelect" aria-label="Sélectionner la langue / Select language" onchange="changeLang(this.value)">
           <option value="fr" <%= lang === 'fr' ? 'selected' : '' %>>🇫🇷 FR</option>
@@ -25,6 +52,6 @@
           <option value="bm" <%= lang === 'bm' ? 'selected' : '' %>>🎯 BM</option>
         </select>
       </div>
-      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navbar-nav">☰</button>
     </div>
   </nav>

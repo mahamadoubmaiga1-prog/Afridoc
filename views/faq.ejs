@@ -1,0 +1,46 @@
+<%- include('partials/header') %>
+
+<main id="main-content" class="container">
+  <section class="faq-page">
+    <h1 class="section-title"><%= (t && t.faqTitle) || 'Questions fréquentes' %></h1>
+    <p class="faq-subtitle"><%= (t && t.faqSubtitle) || 'Tout ce que vous devez savoir sur Afridoc' %></p>
+
+    <div class="faq-list" role="list">
+      <details class="faq-item" role="listitem">
+        <summary class="faq-question"><%= (t && t.faqQ1) || "Est-ce que l'utilisation d'Afridoc est vraiment gratuite ?" %></summary>
+        <div class="faq-answer"><p><%= (t && t.faqA1) || "Oui, Afridoc est entièrement gratuit. Aucune inscription, aucun paiement, aucun abonnement n'est requis." %></p></div>
+      </details>
+
+      <details class="faq-item" role="listitem">
+        <summary class="faq-question"><%= (t && t.faqQ2) || "Mes données personnelles sont-elles stockées ?" %></summary>
+        <div class="faq-answer"><p><%= (t && t.faqA2) || "Non. Afridoc ne stocke aucune donnée personnelle. Les informations que vous saisissez sont utilisées uniquement pour générer votre PDF, puis supprimées." %></p></div>
+      </details>
+
+      <details class="faq-item" role="listitem">
+        <summary class="faq-question"><%= (t && t.faqQ3) || "Les documents générés sont-ils légalement valides ?" %></summary>
+        <div class="faq-answer"><p><%= (t && t.faqA3) || "Les documents générés par Afridoc sont des modèles professionnels. Leur validité légale dépend de l'usage, des signatures apposées et de la législation locale." %></p></div>
+      </details>
+
+      <details class="faq-item" role="listitem">
+        <summary class="faq-question"><%= (t && t.faqQ4) || "Dans quels pays puis-je utiliser Afridoc ?" %></summary>
+        <div class="faq-answer"><p><%= (t && t.faqA4) || "Afridoc est conçu principalement pour le Mali et l'Afrique francophone, mais les documents peuvent être adaptés à tout contexte." %></p></div>
+      </details>
+
+      <details class="faq-item" role="listitem">
+        <summary class="faq-question"><%= (t && t.faqQ5) || "Quels formats de documents puis-je générer ?" %></summary>
+        <div class="faq-answer"><p><%= (t && t.faqA5) || "Tous les documents sont générés en format PDF, prêts à imprimer ou à envoyer par email." %></p></div>
+      </details>
+
+      <details class="faq-item" role="listitem">
+        <summary class="faq-question"><%= (t && t.faqQ6) || "Comment signaler un problème ou suggérer une amélioration ?" %></summary>
+        <div class="faq-answer"><p><%= (t && t.faqA6) || "Vous pouvez nous contacter via notre dépôt GitHub. Nous sommes ouverts à toutes les suggestions d'amélioration." %></p></div>
+      </details>
+    </div>
+
+    <div class="faq-cta">
+      <a href="/" class="btn btn-primary">← <%= (t && t.backHome) || "Retour à l'accueil" %></a>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
