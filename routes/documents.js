@@ -1,5 +1,6 @@
 'use strict';
 
+const crypto = require('crypto');
 const express = require('express');
 const PDFDocument = require('pdfkit');
 const QRCode = require('qrcode');
@@ -624,7 +625,7 @@ function pdfFooter(doc, theme) {
   const bottom     = doc.page.height - 50;
   const margin     = 48;
   const dateStr    = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
-  const refId      = Math.random().toString(36).slice(2, 10).toUpperCase();
+  const refId      = crypto.randomUUID().replace(/-/g, '').slice(0, 8).toUpperCase();
 
   doc.moveTo(margin, bottom).lineTo(pageWidth - margin, bottom)
      .strokeColor(theme.accentColor).lineWidth(0.8).stroke();
