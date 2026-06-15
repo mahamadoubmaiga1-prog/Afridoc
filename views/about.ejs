@@ -1,58 +1,58 @@
 <%- include('partials/header') %>
 
-<main class="container">
+<main id="main-content" class="container">
   <section class="about-page">
-    <h1 class="section-title">À propos d'Afridoc</h1>
+    <h1 class="section-title"><%= (t && t.aboutTitle) || 'À propos d\'Afridoc' %></h1>
 
     <div class="about-grid">
       <div class="about-text">
-        <h2>Notre mission</h2>
-        <p><strong>Afridoc</strong> est une application web gratuite qui permet à tous les citoyens maliens et africains de générer facilement leurs documents administratifs, sans avoir besoin de se déplacer dans un cybercafé.</p>
-        <p>Nous croyons que chaque personne devrait avoir accès aux outils nécessaires pour créer ses documents officiels depuis son domicile, son téléphone ou n'importe où.</p>
+        <h2><%= (t && t.aboutMissionTitle) || 'Notre mission' %></h2>
+        <p><strong>Afridoc</strong> <%= (t && t.aboutMission1) || 'est une application web gratuite qui permet à tous les citoyens maliens et africains de générer facilement leurs documents administratifs, sans avoir besoin de se déplacer dans un cybercafé.' %></p>
+        <p><%= (t && t.aboutMission2) || "Nous croyons que chaque personne devrait avoir accès aux outils nécessaires pour créer ses documents officiels depuis son domicile, son téléphone ou n'importe où." %></p>
 
-        <h2>Documents disponibles</h2>
+        <h2><%= (t && t.aboutDocsTitle) || 'Documents disponibles' %></h2>
         <ul class="about-list">
-          <li>📋 Curriculum Vitae (CV)</li>
-          <li>✉️ Lettre de motivation</li>
-          <li>💼 Demande d'emploi</li>
-          <li>🎓 Demande de stage</li>
-          <li>📜 Attestation de travail</li>
-          <li>🤝 Déclaration sur l'honneur</li>
-          <li>🏛️ Lettre administrative</li>
-          <li>🪪 Demande d'acte de naissance</li>
-          <li>🧾 Contrat de travail</li>
-          <li>💳 Reçu de paiement</li>
-          <li>🖊️ Procuration</li>
-          <li>🌴 Demande de congé</li>
-          <li>🏠 Certificat de résidence</li>
-          <li>🌟 Lettre de recommandation</li>
-          <li>⚖️ Mise en demeure</li>
-          <li>🏫 Attestation de scolarité</li>
+          <li>📋 <%= (t && t.docCvName) || 'Curriculum Vitae (CV)' %></li>
+          <li>✉️ <%= (t && t.docMotivationName) || 'Lettre de motivation' %></li>
+          <li>💼 <%= (t && t.docEmploiName) || "Demande d'emploi" %></li>
+          <li>🎓 <%= (t && t.docStageName) || 'Demande de stage' %></li>
+          <li>📜 <%= (t && t.docAttestTravailName) || 'Attestation de travail' %></li>
+          <li>🤝 <%= (t && t.docDeclHonneurName) || "Déclaration sur l'honneur" %></li>
+          <li>🏛️ <%= (t && t.docLettreAdminName) || 'Lettre administrative' %></li>
+          <li>🪪 <%= (t && t.docActeNaissanceName) || "Demande d'acte de naissance" %></li>
+          <li>🧾 <%= (t && t.docContratTravailName) || 'Contrat de travail' %></li>
+          <li>💳 <%= (t && t.docRecuName) || 'Reçu de paiement' %></li>
+          <li>🖊️ <%= (t && t.docProcurationName) || 'Procuration' %></li>
+          <li>🌴 <%= (t && t.docCongeName) || 'Demande de congé' %></li>
+          <li>🏠 <%= (t && t.docCertResidenceName) || 'Certificat de résidence' %></li>
+          <li>🌟 <%= (t && t.docRecommandationName) || 'Lettre de recommandation' %></li>
+          <li>⚖️ <%= (t && t.docMiseDemeureName) || 'Mise en demeure' %></li>
+          <li>🏫 <%= (t && t.docAttestScolariteName) || 'Attestation de scolarité' %></li>
         </ul>
 
-        <h2>Confidentialité</h2>
-        <p>Aucune donnée personnelle n'est conservée sur nos serveurs. Les documents sont générés à la volée et téléchargés directement sur votre appareil.</p>
+        <h2><%= (t && t.aboutPrivacyTitle) || 'Confidentialité' %></h2>
+        <p><%= (t && t.aboutPrivacyText) || "Aucune donnée personnelle n'est conservée sur nos serveurs. Les documents sont générés à la volée et téléchargés directement sur votre appareil." %></p>
 
         <div class="about-cta">
-          <a href="/" class="btn btn-primary"><%= (t && t.startNow) || 'Générer un document' %></a>
+          <a href="/" class="btn btn-primary"><%= (t && t.aboutCtaLabel) || 'Générer un document' %></a>
         </div>
       </div>
 
       <div class="about-sidebar">
         <div class="stat-card">
-          <div class="stat-icon">📄</div>
+          <div class="stat-icon" aria-hidden="true">📄</div>
           <div class="stat-num">16</div>
-          <div class="stat-label">Types de documents</div>
+          <div class="stat-label"><%= (t && t.aboutStatDocs) || 'Types de documents' %></div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon">⚡</div>
+          <div class="stat-icon" aria-hidden="true">⚡</div>
           <div class="stat-num">&lt; 2 min</div>
-          <div class="stat-label">Pour générer</div>
+          <div class="stat-label"><%= (t && t.aboutStatTime) || 'Pour générer' %></div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon">🆓</div>
+          <div class="stat-icon" aria-hidden="true">🆓</div>
           <div class="stat-num">100%</div>
-          <div class="stat-label">Gratuit</div>
+          <div class="stat-label"><%= (t && t.aboutStatFree) || 'Gratuit' %></div>
         </div>
       </div>
     </div>

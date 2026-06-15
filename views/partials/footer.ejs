@@ -1,7 +1,12 @@
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <p class="footer-brand">📄 <strong>Afridoc</strong></p>
       <p><%= (t && t.footerText) || 'Application de génération de documents administratifs au Mali et en Afrique' %></p>
+      <nav class="footer-nav" aria-label="Liens du pied de page">
+        <a href="/"><%= (t && t.navHome) || 'Accueil' %></a>
+        <a href="/about"><%= (t && t.navAbout) || 'À propos' %></a>
+        <a href="/faq"><%= (t && t.navFaq) || 'FAQ' %></a>
+      </nav>
       <p class="footer-copy">&copy; <%= new Date().getFullYear() %> Afridoc. Tous droits réservés.</p>
     </div>
   </footer>

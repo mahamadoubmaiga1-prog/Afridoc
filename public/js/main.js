@@ -7,33 +7,66 @@ window.changeLang = function changeLang(lang) {
   window.location.href = url.toString();
 };
 
+/* ─── Dark mode toggle ───────────────────────────────── */
 (function () {
-  const toggle = document.querySelector('.nav-toggle');
-  const nav = document.querySelector('.navbar-nav');
+  var STORAGE_KEY = 'afridoc-theme';
+  var html = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+
+  function applyTheme(theme) {
+    html.setAttribute('data-theme', theme || '');
+    if (toggle) {
+      var isDark = theme === 'dark';
+      toggle.querySelector('.theme-toggle-icon').textContent = isDark ? '☀️' : '🌙';
+      toggle.setAttribute('aria-label', isDark ? 'Activer le mode clair' : 'Activer le mode sombre');
+    }
+  }
+
+  var saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) applyTheme(saved);
+
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var current = html.getAttribute('data-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var effectiveDark = current === 'dark' || (current === '' && prefersDark);
+      var next = effectiveDark ? 'light' : 'dark';
+      localStorage.setItem(STORAGE_KEY, next);
+      applyTheme(next);
+    });
+  }
+})();
+
+/* ─── Mobile nav toggle ──────────────────────────────── */
+(function () {
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.querySelector('.navbar-nav');
   if (!toggle || !nav) return;
 
   toggle.addEventListener('click', function () {
-    nav.classList.toggle('open');
-    this.setAttribute('aria-expanded', nav.classList.contains('open'));
+    var isOpen = nav.classList.toggle('open');
+    this.setAttribute('aria-expanded', String(isOpen));
   });
 
   nav.querySelectorAll('a').forEach(function (link) {
     link.addEventListener('click', function () {
       nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
     });
   });
 })();
 
+/* ─── Form submit loading state ──────────────────────── */
 (function () {
-  const forms = document.querySelectorAll('.doc-form');
+  var forms = document.querySelectorAll('.doc-form');
   forms.forEach(function (form) {
-    const submitBtn = form.querySelector('button[type="submit"].btn-primary');
+    var submitBtn = form.querySelector('button[type="submit"].btn-primary');
     if (!submitBtn) return;
 
     submitBtn.setAttribute('data-original', submitBtn.textContent.trim());
 
     form.addEventListener('submit', function (e) {
-      const target = e.submitter;
+      var target = e.submitter;
       if (!target || target !== submitBtn) return;
 
       submitBtn.disabled = true;
@@ -49,8 +82,10 @@ window.changeLang = function changeLang(lang) {
   });
 })();
 
+/* ─── Field focus / validation UX ────────────────────── */
 (function () {
-  const formFields = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
+  var formFields = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
+  var liveRegion = document.getElementById('form-error-live');
 
   formFields.forEach(function (field) {
     field.addEventListener('focus', function () {
@@ -72,36 +107,42 @@ window.changeLang = function changeLang(lang) {
   function validateField(field) {
     if (field.hasAttribute('required') && !String(field.value || '').trim()) {
       field.parentElement.classList.add('has-error');
+      field.parentElement.classList.remove('has-valid');
       return false;
     }
 
     if (field.type === 'email' && String(field.value || '').trim()) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(field.value)) {
         field.parentElement.classList.add('has-error');
+        field.parentElement.classList.remove('has-valid');
         return false;
       }
     }
 
     if (field.type === 'tel' && String(field.value || '').trim()) {
-      const phoneRegex = /^\+?[\d\s\-()]{7,}$/;
+      var phoneRegex = /^\+?[\d\s\-()]{7,}$/;
       if (!phoneRegex.test(field.value)) {
         field.parentElement.classList.add('has-error');
+        field.parentElement.classList.remove('has-valid');
         return false;
       }
     }
 
     field.parentElement.classList.remove('has-error');
+    if (String(field.value || '').trim()) {
+      field.parentElement.classList.add('has-valid');
+    }
     return true;
   }
 
   document.querySelectorAll('.doc-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
-      const submitter = e.submitter;
+      var submitter = e.submitter;
       if (submitter && submitter.formAction && submitter.formAction.includes('/preview')) return;
 
-      const fields = form.querySelectorAll('input[required], textarea[required], select[required]');
-      let isValid = true;
+      var fields = form.querySelectorAll('input[required], textarea[required], select[required]');
+      var isValid = true;
 
       fields.forEach(function (field) {
         if (!validateField(field)) isValid = false;
@@ -109,46 +150,37 @@ window.changeLang = function changeLang(lang) {
 
       if (!isValid) {
         e.preventDefault();
-        const existing = form.parentElement.querySelector('.form-error-banner');
+        var existing = form.parentElement.querySelector('.form-error-banner');
         if (existing) existing.remove();
-        const errorMsg = document.createElement('div');
+        var errorMsg = document.createElement('div');
         errorMsg.className = 'form-error-banner';
-        errorMsg.style.cssText = 'color:#C62828;font-weight:600;margin-bottom:16px;padding:12px;background:rgba(198,40,40,.1);border-radius:8px;border-left:4px solid #C62828;';
+        errorMsg.setAttribute('role', 'alert');
+        errorMsg.setAttribute('aria-live', 'assertive');
         errorMsg.textContent = 'Veuillez remplir tous les champs obligatoires et vérifier les formats.';
         form.parentElement.insertBefore(errorMsg, form);
+        errorMsg.focus();
         setTimeout(function () { errorMsg.remove(); }, 5000);
       }
     });
   });
 })();
 
+/* ─── Document grid search ───────────────────────────── */
 (function () {
-  const style = document.createElement('style');
-  style.textContent = `
-    .btn-loading { opacity: 0.7; position: relative; }
-    .form-group.has-error input,
-    .form-group.has-error textarea,
-    .form-group.has-error select { border-color: #C62828 !important; background-color: rgba(198, 40, 40, 0.05) !important; }
-    .form-group.focused label { color: #1B5E20; }
-  `;
-  document.head.appendChild(style);
-})();
-
-(function () {
-  const searchInput = document.getElementById('docSearch');
-  const grid = document.getElementById('docGrid');
-  const noResults = document.getElementById('docNoResults');
+  var searchInput = document.getElementById('docSearch');
+  var grid = document.getElementById('docGrid');
+  var noResults = document.getElementById('docNoResults');
   if (!searchInput || !grid) return;
 
-  const cards = Array.from(grid.querySelectorAll('.doc-card'));
+  var cards = Array.from(grid.querySelectorAll('.doc-card'));
 
   searchInput.addEventListener('input', function () {
-    const query = this.value.toLowerCase().trim();
-    let visible = 0;
+    var query = this.value.toLowerCase().trim();
+    var visible = 0;
 
     cards.forEach(function (card) {
-      const text = (card.dataset.search || '') + ' ' + (card.textContent || '');
-      const match = !query || text.toLowerCase().includes(query);
+      var text = (card.dataset.search || '') + ' ' + (card.textContent || '');
+      var match = !query || text.toLowerCase().includes(query);
       card.hidden = !match;
       if (match) visible++;
     });
@@ -159,7 +191,6 @@ window.changeLang = function changeLang(lang) {
 
 /* ─── Scroll-triggered animations ───────────────────── */
 (function () {
-  /* Apply sequential stagger delays to document cards */
   document.querySelectorAll('#docGrid .doc-card').forEach(function (card, i) {
     card.style.transitionDelay = (0.05 * (i % 8)).toFixed(2) + 's';
   });
@@ -221,4 +252,23 @@ window.changeLang = function changeLang(lang) {
   }, { threshold: 0.5 });
 
   obs.observe(counter);
+})();
+
+/* ─── Web Share API for preview page ────────────────── */
+(function () {
+  var shareBtn = document.getElementById('shareBtn');
+  if (!shareBtn) return;
+
+  if (!navigator.share) {
+    shareBtn.style.display = 'none';
+    return;
+  }
+
+  shareBtn.addEventListener('click', function () {
+    navigator.share({
+      title: document.title,
+      text: 'Générez ce document gratuitement avec Afridoc',
+      url: window.location.href,
+    }).catch(function () {});
+  });
 })();

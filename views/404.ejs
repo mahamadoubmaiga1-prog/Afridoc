@@ -1,12 +1,12 @@
 <%- include('partials/header') %>
 
-<main class="container error-page">
+<main id="main-content" class="container error-page">
   <div class="error-content">
-    <div class="error-icon">🔍</div>
+    <div class="error-icon" aria-hidden="true">🔍</div>
     <h1>404</h1>
-    <h2>Page introuvable</h2>
-    <p>La page que vous recherchez n'existe pas ou a été déplacée.</p>
-    <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+    <h2><%= (t && t.page404Title) || 'Page introuvable' %></h2>
+    <p><%= (t && t.page404Text) || "La page que vous recherchez n'existe pas ou a été déplacée." %></p>
+    <a href="/" class="btn btn-primary"><%= (t && t.backHome) || "Retour à l'accueil" %></a>
   </div>
 </main>
 

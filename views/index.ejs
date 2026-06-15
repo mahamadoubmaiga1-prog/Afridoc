@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<main>
+<main id="main-content">
   <section class="hero">
     <div class="hero-bg" aria-hidden="true">
       <div class="hero-shape hero-shape--1"></div>
@@ -10,7 +10,7 @@
     <div class="hero-content" data-animate>
       <div class="hero-badge">🌍 <%= (t && t.heroBadge) || 'Service 100% gratuit · Sans inscription' %></div>
       <h1 class="hero-title"><%= (t && t.heroTitle) || 'Vos documents officiels,' %> <span class="highlight"><%= (t && t.heroTitleHighlight) || 'en quelques clics' %></span></h1>
-      <p class="hero-sub"><%= (t && t.heroSubtitle) || 'Générez des documents administratifs professionnels depuis n\'importe où. Rapide, gratuit et sécurisé.' %></p>
+      <p class="hero-sub"><%= (t && t.heroSubtitle) || "Générez des documents administratifs professionnels depuis n'importe où. Rapide, gratuit et sécurisé." %></p>
       <div class="hero-actions">
         <a href="#documents" class="btn btn-primary btn-lg"><%= (t && t.startNow) || 'Commencer maintenant' %> →</a>
         <a href="/about" class="btn btn-outline-hero"><%= (t && t.learnMore) || 'En savoir plus' %></a>
@@ -37,12 +37,12 @@
           <div class="hero-doc-line hero-doc-line--full"></div>
           <div class="hero-doc-line hero-doc-line--75"></div>
         </div>
-        <div class="hero-doc-stamp">✓</div>
+        <div class="hero-doc-stamp" aria-hidden="true">✓</div>
       </div>
     </div>
   </section>
 
-  <section class="stats-bar">
+  <section class="stats-bar" aria-label="Statistiques">
     <div class="container stats-bar-inner">
       <strong data-counter="<%= stats.total %>"><%= stats.total %></strong>
       <span><%= (t && t.statsGenerated) || 'documents générés par nos utilisateurs' %></span>
@@ -53,17 +53,17 @@
     <h2 class="section-title" data-animate><%= (t && t.howItWorks) || 'Comment ça marche ?' %></h2>
     <div class="steps">
       <div class="step" data-animate data-delay="1">
-        <div class="step-num">1</div>
+        <div class="step-num" aria-hidden="true">1</div>
         <h3><%= (t && t.step1Title) || 'Choisissez' %></h3>
         <p><%= (t && t.step1Text) || 'Sélectionnez le type de document que vous souhaitez créer.' %></p>
       </div>
       <div class="step" data-animate data-delay="2">
-        <div class="step-num">2</div>
+        <div class="step-num" aria-hidden="true">2</div>
         <h3><%= (t && t.step2Title) || 'Remplissez' %></h3>
         <p><%= (t && t.step2Text) || 'Saisissez vos informations dans le formulaire simple et guidé.' %></p>
       </div>
       <div class="step" data-animate data-delay="3">
-        <div class="step-num">3</div>
+        <div class="step-num" aria-hidden="true">3</div>
         <h3><%= (t && t.step3Title) || 'Téléchargez' %></h3>
         <p><%= (t && t.step3Text) || 'Obtenez votre document en PDF prêt à imprimer ou à envoyer.' %></p>
       </div>
@@ -75,44 +75,43 @@
     <div class="doc-search-wrap" data-animate>
       <input type="search" id="docSearch" class="doc-search" placeholder="<%= (t && t.documentsSearch) || 'Rechercher un document…' %>" aria-label="<%= (t && t.documentsSearch) || 'Rechercher un document…' %>">
     </div>
-    <div class="doc-grid" id="docGrid">
-      <a href="/documents/cv" class="doc-card" data-search="cv curriculum vitae professionnel" data-animate data-delay="1"><div class="doc-icon">👤</div><h3>CV</h3><p>Curriculum Vitae professionnel</p></a>
-      <a href="/documents/lettre-motivation" class="doc-card" data-search="lettre motivation candidature" data-animate data-delay="2"><div class="doc-icon">✉️</div><h3>Lettre de motivation</h3><p>Pour accompagner votre candidature</p></a>
-      <a href="/documents/demande-emploi" class="doc-card" data-search="demande emploi lettre poste" data-animate data-delay="3"><div class="doc-icon">💼</div><h3>Demande d'emploi</h3><p>Lettre de demande d'emploi</p></a>
-      <a href="/documents/demande-stage" class="doc-card" data-search="demande stage academique etudiant" data-animate data-delay="4"><div class="doc-icon">🎓</div><h3>Demande de stage</h3><p>Demande de stage académique</p></a>
-      <a href="/documents/attestation-travail" class="doc-card" data-search="attestation travail employeur certificat" data-animate data-delay="1"><div class="doc-icon">📜</div><h3>Attestation de travail</h3><p>Attestation délivrée par l'employeur</p></a>
-      <a href="/documents/declaration-honneur" class="doc-card" data-search="declaration honneur officielle serment" data-animate data-delay="2"><div class="doc-icon">🤝</div><h3>Déclaration sur l'honneur</h3><p>Déclaration officielle sur l'honneur</p></a>
-      <a href="/documents/lettre-administrative" class="doc-card" data-search="lettre administrative administration correspondance" data-animate data-delay="3"><div class="doc-icon">🏛️</div><h3>Lettre administrative</h3><p>Correspondance avec les administrations</p></a>
-      <a href="/documents/demande-acte-naissance" class="doc-card" data-search="demande acte naissance etat civil" data-animate data-delay="4"><div class="doc-icon">🪪</div><h3>Demande d'acte de naissance</h3><p>Demande auprès de l'état civil</p></a>
-      <a href="/documents/contrat-travail" class="doc-card" data-search="contrat travail emploi salarie employeur" data-animate data-delay="1"><div class="doc-icon">🧾</div><h3>Contrat de travail</h3><p>Contrat professionnel employeur-salarié</p></a>
-      <a href="/documents/recu-paiement" class="doc-card" data-search="recu paiement justificatif reglement facture" data-animate data-delay="2"><div class="doc-icon">💳</div><h3>Reçu de paiement</h3><p>Justificatif de règlement</p></a>
-      <a href="/documents/procuration" class="doc-card" data-search="procuration mandat representation deleguer" data-animate data-delay="3"><div class="doc-icon">🖊️</div><h3>Procuration</h3><p>Mandat de représentation</p></a>
-      <a href="/documents/demande-conge" class="doc-card" data-search="demande conge absence vacances rrh" data-animate data-delay="4"><div class="doc-icon">🌴</div><h3>Demande de congé</h3><p>Demande officielle d'absence</p></a>
-      <a href="/documents/certificat-residence" class="doc-card" data-search="certificat residence domicile adresse attestation" data-animate data-delay="1"><div class="doc-icon">🏠</div><h3>Certificat de résidence</h3><p>Attestation de domicile</p></a>
-      <a href="/documents/lettre-recommandation" class="doc-card" data-search="lettre recommandation appui professionnel academique reference" data-animate data-delay="2"><div class="doc-icon">🌟</div><h3>Lettre de recommandation</h3><p>Appui professionnel et académique</p></a>
-      <a href="/documents/mise-en-demeure" class="doc-card" data-search="mise en demeure notification formelle recours juridique" data-animate data-delay="3"><div class="doc-icon">⚖️</div><h3>Mise en demeure</h3><p>Notification formelle avant recours</p></a>
-      <a href="/documents/attestation-scolarite" class="doc-card" data-search="attestation scolarite scolaire ecole eleve inscription" data-animate data-delay="4"><div class="doc-icon">🏫</div><h3>Attestation de scolarité</h3><p>Justificatif de fréquentation scolaire</p></a>
+    <div class="doc-grid" id="docGrid" role="list">
+      <a href="/documents/cv" class="doc-card" role="listitem" data-search="cv curriculum vitae professionnel" data-animate data-delay="1"><div class="doc-icon" aria-hidden="true">👤</div><h3><%= (t && t.docCvName) || 'CV' %></h3><p><%= (t && t.docCvDesc) || 'Curriculum Vitae professionnel' %></p></a>
+      <a href="/documents/lettre-motivation" class="doc-card" role="listitem" data-search="lettre motivation candidature" data-animate data-delay="2"><div class="doc-icon" aria-hidden="true">✉️</div><h3><%= (t && t.docMotivationName) || 'Lettre de motivation' %></h3><p><%= (t && t.docMotivationDesc) || 'Pour accompagner votre candidature' %></p></a>
+      <a href="/documents/demande-emploi" class="doc-card" role="listitem" data-search="demande emploi lettre poste" data-animate data-delay="3"><div class="doc-icon" aria-hidden="true">💼</div><h3><%= (t && t.docEmploiName) || "Demande d'emploi" %></h3><p><%= (t && t.docEmploiDesc) || "Lettre de demande d'emploi" %></p></a>
+      <a href="/documents/demande-stage" class="doc-card" role="listitem" data-search="demande stage academique etudiant" data-animate data-delay="4"><div class="doc-icon" aria-hidden="true">🎓</div><h3><%= (t && t.docStageName) || 'Demande de stage' %></h3><p><%= (t && t.docStageDesc) || 'Demande de stage académique' %></p></a>
+      <a href="/documents/attestation-travail" class="doc-card" role="listitem" data-search="attestation travail employeur certificat" data-animate data-delay="1"><div class="doc-icon" aria-hidden="true">📜</div><h3><%= (t && t.docAttestTravailName) || 'Attestation de travail' %></h3><p><%= (t && t.docAttestTravailDesc) || "Attestation délivrée par l'employeur" %></p></a>
+      <a href="/documents/declaration-honneur" class="doc-card" role="listitem" data-search="declaration honneur officielle serment" data-animate data-delay="2"><div class="doc-icon" aria-hidden="true">🤝</div><h3><%= (t && t.docDeclHonneurName) || "Déclaration sur l'honneur" %></h3><p><%= (t && t.docDeclHonneurDesc) || "Déclaration officielle sur l'honneur" %></p></a>
+      <a href="/documents/lettre-administrative" class="doc-card" role="listitem" data-search="lettre administrative administration correspondance" data-animate data-delay="3"><div class="doc-icon" aria-hidden="true">🏛️</div><h3><%= (t && t.docLettreAdminName) || 'Lettre administrative' %></h3><p><%= (t && t.docLettreAdminDesc) || 'Correspondance avec les administrations' %></p></a>
+      <a href="/documents/demande-acte-naissance" class="doc-card" role="listitem" data-search="demande acte naissance etat civil" data-animate data-delay="4"><div class="doc-icon" aria-hidden="true">🪪</div><h3><%= (t && t.docActeNaissanceName) || "Demande d'acte de naissance" %></h3><p><%= (t && t.docActeNaissanceDesc) || "Demande auprès de l'état civil" %></p></a>
+      <a href="/documents/contrat-travail" class="doc-card" role="listitem" data-search="contrat travail emploi salarie employeur" data-animate data-delay="1"><div class="doc-icon" aria-hidden="true">🧾</div><h3><%= (t && t.docContratTravailName) || 'Contrat de travail' %></h3><p><%= (t && t.docContratTravailDesc) || 'Contrat professionnel employeur-salarié' %></p></a>
+      <a href="/documents/recu-paiement" class="doc-card" role="listitem" data-search="recu paiement justificatif reglement facture" data-animate data-delay="2"><div class="doc-icon" aria-hidden="true">💳</div><h3><%= (t && t.docRecuName) || 'Reçu de paiement' %></h3><p><%= (t && t.docRecuDesc) || 'Justificatif de règlement' %></p></a>
+      <a href="/documents/procuration" class="doc-card" role="listitem" data-search="procuration mandat representation deleguer" data-animate data-delay="3"><div class="doc-icon" aria-hidden="true">🖊️</div><h3><%= (t && t.docProcurationName) || 'Procuration' %></h3><p><%= (t && t.docProcurationDesc) || 'Mandat de représentation' %></p></a>
+      <a href="/documents/demande-conge" class="doc-card" role="listitem" data-search="demande conge absence vacances rrh" data-animate data-delay="4"><div class="doc-icon" aria-hidden="true">🌴</div><h3><%= (t && t.docCongeName) || 'Demande de congé' %></h3><p><%= (t && t.docCongeDesc) || "Demande officielle d'absence" %></p></a>
+      <a href="/documents/certificat-residence" class="doc-card" role="listitem" data-search="certificat residence domicile adresse attestation" data-animate data-delay="1"><div class="doc-icon" aria-hidden="true">🏠</div><h3><%= (t && t.docCertResidenceName) || 'Certificat de résidence' %></h3><p><%= (t && t.docCertResidenceDesc) || 'Attestation de domicile' %></p></a>
+      <a href="/documents/lettre-recommandation" class="doc-card" role="listitem" data-search="lettre recommandation appui professionnel academique reference" data-animate data-delay="2"><div class="doc-icon" aria-hidden="true">🌟</div><h3><%= (t && t.docRecommandationName) || 'Lettre de recommandation' %></h3><p><%= (t && t.docRecommandationDesc) || 'Appui professionnel et académique' %></p></a>
+      <a href="/documents/mise-en-demeure" class="doc-card" role="listitem" data-search="mise en demeure notification formelle recours juridique" data-animate data-delay="3"><div class="doc-icon" aria-hidden="true">⚖️</div><h3><%= (t && t.docMiseDemeureName) || 'Mise en demeure' %></h3><p><%= (t && t.docMiseDemeureDesc) || 'Notification formelle avant recours' %></p></a>
+      <a href="/documents/attestation-scolarite" class="doc-card" role="listitem" data-search="attestation scolarite scolaire ecole eleve inscription" data-animate data-delay="4"><div class="doc-icon" aria-hidden="true">🏫</div><h3><%= (t && t.docAttestScolariteName) || 'Attestation de scolarité' %></h3><p><%= (t && t.docAttestScolariteDesc) || 'Justificatif de fréquentation scolaire' %></p></a>
     </div>
-    <p class="doc-no-results" id="docNoResults" hidden>Aucun document trouvé.</p>
+    <p class="doc-no-results" id="docNoResults" hidden aria-live="polite"><%= (t && t.noResults) || 'Aucun document trouvé.' %></p>
   </section>
 
   <section class="features container">
     <h2 class="section-title" data-animate><%= (t && t.whyChoose) || 'Pourquoi nous choisir ?' %></h2>
     <div class="features-grid">
-      <div class="feature" data-animate data-delay="1"><span class="feature-icon">⚡</span><h3>Rapide</h3><p>Générez votre document en moins de 2 minutes.</p></div>
-      <div class="feature" data-animate data-delay="2"><span class="feature-icon">🆓</span><h3>Gratuit</h3><p>Aucun frais, aucune inscription requise.</p></div>
-      <div class="feature" data-animate data-delay="3"><span class="feature-icon">📲</span><h3>Accessible</h3><p>Depuis votre téléphone, tablette ou ordinateur.</p></div>
-      <div class="feature" data-animate data-delay="4"><span class="feature-icon">🔒</span><h3>Sécurisé</h3><p>Vos données ne sont jamais stockées sur nos serveurs.</p></div>
+      <div class="feature" data-animate data-delay="1"><span class="feature-icon" aria-hidden="true"><%= (t && t.feature1Icon) || '⚡' %></span><h3><%= (t && t.feature1Title) || 'Rapide' %></h3><p><%= (t && t.feature1Text) || 'Générez votre document en moins de 2 minutes.' %></p></div>
+      <div class="feature" data-animate data-delay="2"><span class="feature-icon" aria-hidden="true"><%= (t && t.feature2Icon) || '🆓' %></span><h3><%= (t && t.feature2Title) || 'Gratuit' %></h3><p><%= (t && t.feature2Text) || 'Aucun frais, aucune inscription requise.' %></p></div>
+      <div class="feature" data-animate data-delay="3"><span class="feature-icon" aria-hidden="true"><%= (t && t.feature3Icon) || '📲' %></span><h3><%= (t && t.feature3Title) || 'Accessible' %></h3><p><%= (t && t.feature3Text) || 'Depuis votre téléphone, tablette ou ordinateur.' %></p></div>
+      <div class="feature" data-animate data-delay="4"><span class="feature-icon" aria-hidden="true"><%= (t && t.feature4Icon) || '🔒' %></span><h3><%= (t && t.feature4Title) || 'Sécurisé' %></h3><p><%= (t && t.feature4Text) || 'Vos données ne sont jamais stockées sur nos serveurs.' %></p></div>
     </div>
+  </section>
+
   <section class="legal-notice" data-animate>
     <div class="container legal-notice-inner">
-      <span class="legal-icon">⚖️</span>
+      <span class="legal-icon" aria-hidden="true">⚖️</span>
       <div class="legal-text">
-        <strong>Avertissement légal —</strong>
-        Les documents générés par Afridoc sont fournis à titre indicatif et d'aide à la rédaction.
-        Toute utilisation frauduleuse, falsification ou usage illicite de ces documents est
-        strictement interdit et passible de poursuites pénales conformément à la législation en vigueur.
-        L'utilisateur est seul responsable du contenu renseigné et de l'usage qu'il fait des documents produits.
+        <strong><%= (t && t.legalTitle) || 'Avertissement légal —' %></strong>
+        <%= (t && t.legalText) || "Les documents générés par Afridoc sont fournis à titre indicatif et d'aide à la rédaction. Toute utilisation frauduleuse, falsification ou usage illicite de ces documents est strictement interdit et passible de poursuites pénales conformément à la législation en vigueur. L'utilisateur est seul responsable du contenu renseigné et de l'usage qu'il fait des documents produits." %>
       </div>
     </div>
   </section>

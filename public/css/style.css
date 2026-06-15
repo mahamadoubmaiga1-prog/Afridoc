@@ -3,7 +3,7 @@
    Colors inspired by Mali flag: green #1B5E20, yellow #FFD700, red #C62828
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap&font-display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -40,6 +40,47 @@
   --font-display: 'Poppins', 'Inter', sans-serif;
 }
 
+/* ─── Dark mode ───────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --white:     #1E2128;
+    --off-white: #13161C;
+    --gray-50:   #1A1D24;
+    --gray-100:  #22262F;
+    --gray-200:  #2D3340;
+    --gray-300:  #3D4455;
+    --gray-400:  #6B7280;
+    --gray-600:  #9CA3AF;
+    --gray-700:  #C9D1DC;
+    --gray-800:  #E2E8F0;
+    --gray-900:  #F1F5F9;
+    --gold-light:#2D2800;
+    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,.3);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,.4), 0 2px 4px -1px rgba(0,0,0,.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.4), 0 4px 6px -2px rgba(0,0,0,.2);
+    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,.5), 0 10px 10px -5px rgba(0,0,0,.3);
+  }
+}
+
+[data-theme="dark"] {
+  --white:     #1E2128;
+  --off-white: #13161C;
+  --gray-50:   #1A1D24;
+  --gray-100:  #22262F;
+  --gray-200:  #2D3340;
+  --gray-300:  #3D4455;
+  --gray-400:  #6B7280;
+  --gray-600:  #9CA3AF;
+  --gray-700:  #C9D1DC;
+  --gray-800:  #E2E8F0;
+  --gray-900:  #F1F5F9;
+  --gold-light:#2D2800;
+  --shadow-sm: 0 1px 2px 0 rgba(0,0,0,.3);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,.4), 0 2px 4px -1px rgba(0,0,0,.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.4), 0 4px 6px -2px rgba(0,0,0,.2);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,.5), 0 10px 10px -5px rgba(0,0,0,.3);
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -50,6 +91,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background-color .3s ease, color .3s ease;
 }
 
 a { color: var(--green-light); text-decoration: none; transition: color var(--transition); }
@@ -62,6 +104,35 @@ main { flex: 1; }
   margin: 0 auto;
   padding: 0 24px;
 }
+
+/* ─── Skip to content ────────────────────────────────── */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.skip-to-content:focus {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  width: auto;
+  height: auto;
+  background: var(--green);
+  color: var(--white);
+  padding: 12px 20px;
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  font-size: 1rem;
+  z-index: 9999;
+  box-shadow: var(--shadow-lg);
+  outline: 3px solid var(--gold);
+}
+
 
 /* ─── Navbar ─────────────────────────────────────────── */
 .navbar {
@@ -1310,3 +1381,188 @@ legend {
 }
 
 .doc-card[hidden] { display: none; }
+
+/* ─── Dark mode toggle button ────────────────────────── */
+.theme-toggle {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  color: var(--white);
+  border-radius: 999px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,.2);
+  transform: scale(1.1);
+}
+
+/* ─── Form validation inline styles (moved from JS) ──── */
+.btn-loading { opacity: 0.7; position: relative; }
+
+.form-group.has-error input,
+.form-group.has-error textarea,
+.form-group.has-error select {
+  border-color: var(--red) !important;
+  background-color: rgba(198,40,40,.05) !important;
+}
+
+.form-group.focused label { color: var(--green); }
+
+.form-group.has-valid input,
+.form-group.has-valid textarea,
+.form-group.has-valid select {
+  border-color: var(--green-lighter);
+}
+
+.form-group.has-valid label::after {
+  content: ' ✓';
+  color: var(--green-lighter);
+  font-size: .85em;
+}
+
+.form-error-banner {
+  color: var(--red);
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(198,40,40,.1);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--red);
+}
+
+/* ─── Breadcrumb ─────────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  font-size: .9rem;
+  color: var(--gray-600);
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: var(--green-light);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.breadcrumb a:hover { color: var(--green); }
+
+.breadcrumb span[aria-current="page"] {
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+/* ─── Footer nav links ───────────────────────────────── */
+.footer-nav {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 12px 0;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: rgba(255,255,255,.75);
+  font-size: .9rem;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.footer-nav a:hover { color: var(--gold); }
+
+/* ─── FAQ page ───────────────────────────────────────── */
+.faq-page {
+  padding: 80px 20px;
+}
+
+.faq-subtitle {
+  text-align: center;
+  color: var(--gray-600);
+  font-size: 1.1rem;
+  margin-top: -32px;
+  margin-bottom: 48px;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all var(--transition);
+}
+
+.faq-item[open] {
+  border-color: var(--green-light);
+  box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+  padding: 22px 28px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--green);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background var(--transition);
+  font-family: var(--font-display);
+}
+
+.faq-question::-webkit-details-marker { display: none; }
+
+.faq-question::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--green-lighter);
+  transition: transform var(--transition);
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.faq-item[open] .faq-question::after {
+  transform: rotate(45deg);
+}
+
+.faq-question:hover { background: var(--gray-50); }
+
+.faq-answer {
+  padding: 0 28px 22px;
+  color: var(--gray-700);
+  line-height: 1.7;
+  font-size: .97rem;
+}
+
+.faq-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* ─── Doc card click animation ───────────────────────── */
+.doc-card:active {
+  transform: scale(0.97) translateY(0);
+  box-shadow: var(--shadow-md);
+  transition: transform .1s ease, box-shadow .1s ease;
+}
+
