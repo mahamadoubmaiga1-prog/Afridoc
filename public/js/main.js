@@ -159,6 +159,11 @@ window.changeLang = function changeLang(lang) {
 
 /* ─── Scroll-triggered animations ───────────────────── */
 (function () {
+  /* Apply sequential stagger delays to document cards */
+  document.querySelectorAll('#docGrid .doc-card').forEach(function (card, i) {
+    card.style.transitionDelay = (0.05 * (i % 8)).toFixed(2) + 's';
+  });
+
   if (!('IntersectionObserver' in window)) {
     document.querySelectorAll('[data-animate]').forEach(function (el) {
       el.classList.add('animated');
