@@ -893,6 +893,38 @@ legend {
   letter-spacing: -0.3px;
 }
 
+/* ─── Legal notice banner ─────────────────────────────── */
+.legal-notice {
+  background: #FFFBEA;
+  border-top: 3px solid var(--gold);
+  border-bottom: 1px solid rgba(255,215,0,.4);
+  padding: 20px 24px;
+}
+
+.legal-notice-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.legal-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.legal-text {
+  font-size: .88rem;
+  color: var(--gray-700);
+  line-height: 1.65;
+}
+
+.legal-text strong {
+  color: #7B3800;
+}
+
 .footer p {
   font-size: .95rem;
   opacity: .85;
